@@ -50,3 +50,12 @@ Events::on('pre_system', function () {
 		Services::toolbar()->respond();
 	}
 });
+
+Events::on('LoginWasOccurred',function($event){
+	\App\Src\shared\infrastructure\PersistEventDomainSubscriber::handle($event->eventName(),$event->userName(),$event->wasLogged(),$event->occurredOn());
+	\App\Src\bussines\session\application\SessionSubscriberUserName::handle($event->userName());
+});
+
+Events::on('LanguageWasLoaded',function($event){
+	\App\Src\bussines\session\application\SessionSubscriberLanguage::handle($event->language());
+});
