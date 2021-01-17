@@ -3,18 +3,17 @@
 use App\Src\bussines\users\domain\UserName;
 use App\Src\bussines\users\domain\UserPassword;
 use App\Src\bussines\users\domain\UserUuid;
-final class LoginAssembly
+
+final class LoginAssemblyRequest
 {
     private $user;
     private $password;
-    private $uuid;
-
+  
     public function __construct($values)
     {
         //deben ser tipos primitivos :(
         $this->user = UserName::fromValues($values->user());
         $this->password = UserPassword::fromValues($values->password());
-        $this->uuid = UserUuid::fromValues($values->uuid());
     }
 
     public function user()
@@ -25,10 +24,5 @@ final class LoginAssembly
     public function password()
     {
         return $this->password;
-    }
-
-    public function uuid()
-    {
-        return $this->uuid;
     }
 }

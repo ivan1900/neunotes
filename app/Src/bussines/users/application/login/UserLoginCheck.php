@@ -1,7 +1,7 @@
 <?php namespace App\Src\bussines\users\application\login;
 
 use App\Src\bussines\users\domain\login\UserLogin;
-use App\Src\bussines\users\domain\login\LoginAssembly;
+use App\Src\bussines\users\domain\login\LoginAssemblyRequest;
 use App\Src\bussines\users\application\login\RequestLogin;
 use App\Src\bussines\users\application\login\GetUserLogin;
 use App\Src\bussines\users\infrastructure\login\UserLoginRepositoryCI;
@@ -15,7 +15,7 @@ class UserLoginCheck
     private $dispatcher;
     
     public function __construct(RequestLogin $request){
-        $assembly = new LoginAssembly($request);
+        $assembly = new LoginAssemblyRequest($request);
         $this->userLogin = UserLogin::encodeSHA256FromValues($assembly->user(),$assembly->password());
 
         $userLoginRepository = new UserLoginRepositoryCI();

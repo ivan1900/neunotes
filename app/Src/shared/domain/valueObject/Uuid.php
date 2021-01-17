@@ -3,9 +3,9 @@
 use InvalidArgumentException;
 use Ramsey\Uuid\Uuid as RamseyUuid;
 
-final class Uuid
+class Uuid
 {
-    protected string $value;
+    protected $value;
 
     public function __construct($value)
     {

@@ -24,7 +24,7 @@ class GetUserLogin
         }
 
         $assembly = new LoginAssembly($response);
-        $userLogin = UserLogin::fromValues($assembly->user(),$assembly->password());
+        $userLogin = UserLogin::fromValues($assembly->user(),$assembly->password(),$assembly->uuid());
         return $userLogin;
     }
 
