@@ -19,7 +19,7 @@ class Uuid
     
     public function value():string
     {
-        return $this->value();
+        return $this->value;
     }
 
     public function equals(Uuid $anUuid): bool

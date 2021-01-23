@@ -41,9 +41,9 @@ class Home extends BaseController
 
 	private function getTypeGroup()
 	{
-		$idUser = $this->session->getUserId();
-		$groupType = new GetGroupType($idUser);
-		return $groupType($idUser);
+		$userUuid = $this->session->userUuid();
+		$groupType = new GetGroupType($userUuid);
+		return $groupType($userUuid);
 	}
 
 	private function renderView()

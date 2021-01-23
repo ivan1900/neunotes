@@ -8,12 +8,14 @@ class LoginWasOccurred implements DomainEvent, PublishableDomainEvent
     private $userName;
     private $wasLogged;
     private $occurredOn;
+    private $userUuid;
 
-    public function __construct($userName, $wasLogged)
+    public function __construct($userName, $wasLogged, $userUuid)
     {
         $this->userName = $userName;
         $this->occurredOn = (new \DateTimeImmutable())->getTimestamp();
         $this->wasLogged = $wasLogged;
+        $this->userUuid = $userUuid;
     }
 
     public function eventName()
@@ -34,5 +36,10 @@ class LoginWasOccurred implements DomainEvent, PublishableDomainEvent
     public function wasLogged()
     {
         return $this->wasLogged;
+    }
+
+    public function userUuid()
+    {
+        return $this->userUuid;
     }
 }
