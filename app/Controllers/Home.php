@@ -7,6 +7,7 @@ use App\Src\bussines\session\application\IsSession;
 use App\Src\bussines\session\application\SessionExceptionMessage;
 use App\Src\bussines\groups\application\GetGroupType;
 use App\Src\bussines\menu\application\GetMenu;
+use App\Src\bussines\groups\application\RequestMenuAuth;
 
 class Home extends BaseController
 {
@@ -20,6 +21,9 @@ class Home extends BaseController
 
 		$this->dataToView['exception']	= new sessionExceptionMessage();
 		$this->session = GetSession::entity();
+
+		$menuToLoad = 
+		////////////////
 		
 		$groupType = new TypeGroups($this->getTypeGroup());
 			

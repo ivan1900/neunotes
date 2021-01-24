@@ -9,20 +9,22 @@ use App\Src\bussines\groups\application\GroupTypeFinder;
 use App\Src\bussines\groups\infrastructure\GroupsRepositoryMySql;
 use App\Src\bussines\groups\domain\UserNotGroups;
 use App\Src\bussines\session\application\SessionExceptionMessage;
+use App\Src\bussines\groups\application\RequestMenuAuth;
 
-final class GetGroupType
+
+final class GetMenuAuth
 {
-    private $userId;
+    private $userUuid;
 
-    public function __invoke(int $id)
+    public function __invoke(RequestMenuAuth $uuid)
     {
-        $this->userId = $id;
+        $this->userUuid = $uuid;
         $criteria = new Criteria('grupos',$this->fields(), $this->joins() , $this->filters(),null,null,null);
         $repository = new GroupsRepositoryMySql();
         $groupFinder = new GroupTypeFinder($repository);
         try
         {
-            return $groupFinder($this->userId, $criteria);
+            return $groupFinder($this->userUuid, $criteria);
         }
         catch (UserNotGroups $e)
         {
@@ -39,13 +41,13 @@ final class GetGroupType
 
     private function filters()
     {
-        $filters[0] = new Filter(null,'interusergroup.usuarioid','=',$this->userId);
+        $filters[0] = new Filter(null,'interusergroup.usuarioid','=',$this->userUuid);
         return $filters;
     }
 
     private function joins()
     {
-        $joins[0] = new Join('inner','interusergroup','grupos.id', '=', 'interusergroup.grupoid');
+        $joins[0] = new Join('inner','interusergroup','grupos.uuid', '=', 'interusergroup.grupoid');
         return $joins;
     }
 
