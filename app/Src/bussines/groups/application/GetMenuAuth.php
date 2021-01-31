@@ -11,14 +11,15 @@ use App\Src\bussines\groups\domain\UserNotGroups;
 use App\Src\bussines\session\application\SessionExceptionMessage;
 use App\Src\bussines\groups\application\RequestMenuAuth;
 
-
 final class GetMenuAuth
 {
     private $userUuid;
 
-    public function __invoke(RequestMenuAuth $uuid)
+    public function __invoke(RequestMenuAuth $request)
     {
-        $this->userUuid = $uuid;
+        $this->userUuid = $request->uuid();
+
+        
         $criteria = new Criteria('grupos',$this->fields(), $this->joins() , $this->filters(),null,null,null);
         $repository = new GroupsRepositoryMySql();
         $groupFinder = new GroupTypeFinder($repository);

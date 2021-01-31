@@ -34,7 +34,7 @@ final class CISelect
         $query = (is_null($this->offset)) ? $query : $query . ' OFFSET ' . $this->offset;
         return $query;
     }
-
+/*
     public function querySelectWhere()
     {
         $query = 'select ' . $this->fields . ' from ' . $this->table . ' where ' . $this->where;
@@ -52,4 +52,5 @@ final class CISelect
         $query = 'select ' . $this->fields . ' from ' . $this->table . $this->join . ' where ' . $this->where;
         return $query;
     }
+    */
 }
