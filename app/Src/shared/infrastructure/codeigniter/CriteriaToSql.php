@@ -4,6 +4,7 @@ use App\Src\shared\domain\criteria\ICriteria;
 use App\Src\shared\domain\criteria\Filter;
 use App\Src\shared\domain\criteria\Join;
 use App\Src\shared\domain\criteria\ICriteriaToSql;
+
 final class CriteriaToSql implements ICriteriaToSql
 {
     private $criteria;
@@ -11,6 +12,17 @@ final class CriteriaToSql implements ICriteriaToSql
     public function __construct(ICriteria $criteria)
     {
         $this->criteria = $criteria;
+    }
+
+    public function querySelect()
+    {
+        $query = 'SELECT ' . $this->convertFields() . ' FROM ' . $this->table();
+        $query = (is_null($this->convertJoin())) ? $query : $query . $this->convertJoin();      
+        $query = (is_null($this->convertWhere())) ? $query : $query . ' WHERE ' . $this->convertWhere();
+        $query = (is_null($this->convertOrder())) ? $query : $query . ' ORDER BY ' . $this->convertOrder();
+        $query = (is_null($this->convertLimit())) ? $query : $query . ' LIMIT ' . $this->convertLimit();
+        $query = (is_null($this->convertOffset())) ? $query : $query . ' OFFSET ' . $this->convertOffset();
+        return $query;
     }
 
     public function table(): string

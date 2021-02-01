@@ -6,7 +6,7 @@ final class RequestMenuAuth
 
     public function __construct(string $uuid)
     {
-        $this->uuid;
+        $this->uuid = $uuid;
     }
 
     public function uuid()

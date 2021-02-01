@@ -12,12 +12,12 @@ final class GroupTypeFinder
         $this->repository = $repository;
     }
 
-    public function __invoke(?int $userid, $criteria):array
+    public function __invoke($userUuid, $criteria):array
     {
         $groups = $this->repository->searchByCriteria($criteria);
         
         if (null === $groups){
-            throw new UserNotGroups($userid);
+            throw new UserNotGroups($userUuid);
         }
 
         return $groups;

@@ -2,7 +2,6 @@
 
 use App\Src\bussines\groups\domain\IGroupsRepository;
 use App\Src\shared\infrastructure\codeigniter\CIRepository;
-use App\Src\shared\infrastructure\codeigniter\CISelect;
 use App\Src\shared\infrastructure\codeigniter\CriteriaToSql;
 use App\Src\shared\domain\criteria\Criteria;
 use App\Src\bussines\groups\domain\TypeGroup;
@@ -12,8 +11,7 @@ final class GroupsRepositoryMySql extends CIRepository implements IGroupsReposit
     public function searchByCriteria(Criteria $criteria): ?array
     {
         $criteriaSQL = new CriteriaToSql($criteria);
-        $select = new CISelect($criteriaSQL);
-        $arrayObj = $this->db->selectSql($select->querySelect());
+        $arrayObj = $this->db->selectSql($criteriaSQL->querySelect());
         $groups = $this->convertToTypegroup($arrayObj);
         return $groups;
     }

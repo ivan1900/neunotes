@@ -13,6 +13,8 @@ abstract class IsUserInGroup implements IGroupsSpecification
 
     public function isSatisfiedBy(Group $group)
     {
-        return $group->isUserInGroup($this->userUuid);
+        return true; //por el momento no veo claro esta funcionalidad
     }
+
+    abstract public function selectSatisfying():string; 
 }

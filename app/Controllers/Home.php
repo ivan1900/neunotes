@@ -8,10 +8,10 @@ use App\Src\bussines\session\application\SessionExceptionMessage;
 use App\Src\bussines\groups\application\GetGroupType;
 use App\Src\bussines\menu\application\GetMenu;
 use App\Src\bussines\groups\application\RequestMenuAuth;
+use App\Src\bussines\groups\application\GetMenuAuth;
 
 class Home extends BaseController
 {
-	
 	private $dataToView;
 	private $dataToMenu;
 	
@@ -22,7 +22,9 @@ class Home extends BaseController
 		$this->dataToView['exception']	= new sessionExceptionMessage();
 		$this->session = GetSession::entity();
 
-		$menuToLoad = 
+		$requestMenuAuth = new RequestMenuAuth($this->session->userUuid());
+		$getMenuAuth = new GetMenuAuth();
+		$menuAuth = $getMenuAuth($requestMenuAuth);
 		////////////////
 		
 		$groupType = new TypeGroups($this->getTypeGroup());

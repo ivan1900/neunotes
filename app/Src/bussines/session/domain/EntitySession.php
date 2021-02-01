@@ -6,10 +6,11 @@ class EntitySession
     private $language;
     private $userUuid;
     
-    public function __construct($userName, $language)
+    public function __construct($userName, $language, $userUuid)
     {
         $this->userName = $userName;
         $this->language = $language;
+        $this->userUuid = $userUuid;
     }
 
     public function language()
