@@ -10,18 +10,14 @@ use App\Src\bussines\groups\application\RequestMenuAuth;
 
 final class GetMenuAuth
 {
-    private $userUuid;
-
     public function __invoke(RequestMenuAuth $request)
-    {
-        $this->userUuid = $request->uuid();
-        
+    {  
         $repository = new GroupsRepositoryMySql();
-        $userInGroup = new IsUserInGroupSql();
+        $userInGroup = new IsUserInGroupSql($request->uuid());
         $groupFinder = new GroupTypeFinder($repository);
         try
         {
-            return $groupFinder($this->userUuid, $userInGroup->selectSatisfying($this->userUuid));
+            return $groupFinder($request->uuid(), $userInGroup);
         }
         catch (UserNotGroups $e)
         {
@@ -29,5 +25,4 @@ final class GetMenuAuth
             return null;
         }
     }
-
 }

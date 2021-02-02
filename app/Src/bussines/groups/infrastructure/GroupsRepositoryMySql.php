@@ -2,17 +2,16 @@
 
 use App\Src\bussines\groups\domain\IGroupsRepository;
 use App\Src\shared\infrastructure\codeigniter\CIRepository;
-use App\Src\shared\infrastructure\codeigniter\CriteriaToSql;
-use App\Src\shared\domain\criteria\Criteria;
-use App\Src\bussines\groups\domain\TypeGroup;
+use App\Src\bussines\groups\domain\IGroupsSpecification;
+
 
 final class GroupsRepositoryMySql extends CIRepository implements IGroupsRepository
 {
-    public function searchByCriteria(Criteria $criteria): ?array
+    public function searchByCriteria(IGroupsSpecification $specification): ?array
     {
-        $criteriaSQL = new CriteriaToSql($criteria);
-        $arrayObj = $this->db->selectSql($criteriaSQL->querySelect());
-        $groups = $this->convertToTypegroup($arrayObj);
+        $sql = $specification->selectSatisfying();
+        $arrayObj = $this->db->selectSql($sql);
+        
         return $groups;
     }
 

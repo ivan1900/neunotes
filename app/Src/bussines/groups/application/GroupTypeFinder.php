@@ -1,6 +1,7 @@
 <?php namespace App\Src\bussines\groups\application;
 
 use App\Src\bussines\groups\domain\IGroupsRepository;
+use App\Src\bussines\groups\domain\IGroupsSpecification;
 use App\Src\bussines\groups\domain\UserNotGroups;
 
 final class GroupTypeFinder
@@ -12,9 +13,9 @@ final class GroupTypeFinder
         $this->repository = $repository;
     }
 
-    public function __invoke($userUuid, $criteria):array
+    public function __invoke($userUuid, IGroupsSpecification $specification):array
     {
-        $groups = $this->repository->searchByCriteria($criteria);
+        $groups = $this->repository->searchByCriteria($specification);
         
         if (null === $groups){
             throw new UserNotGroups($userUuid);

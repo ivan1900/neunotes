@@ -2,7 +2,8 @@
 
 interface IGroupsSpecification
 {
-    public function isSatisfiedBy(Object $candidate): bool;
+    //public function isSatisfiedBy(Object $candidate): bool;
 
     public function selectSatisfying(): string;
+
 }
