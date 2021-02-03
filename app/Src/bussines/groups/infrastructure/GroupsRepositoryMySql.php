@@ -3,6 +3,7 @@
 use App\Src\bussines\groups\domain\IGroupsRepository;
 use App\Src\shared\infrastructure\codeigniter\CIRepository;
 use App\Src\bussines\groups\domain\IGroupsSpecification;
+use App\Src\bussines\groups\application\ResponseUserInGroups;
 
 
 final class GroupsRepositoryMySql extends CIRepository implements IGroupsRepository
@@ -11,21 +12,22 @@ final class GroupsRepositoryMySql extends CIRepository implements IGroupsReposit
     {
         $sql = $specification->selectSatisfying();
         $arrayObj = $this->db->selectSql($sql);
-        
-        return $groups;
+        return $this->madeArrayDTO($arrayObj);
     }
 
-    private function convertToTypegroup($arrayObj)
+    private function madeArrayDTO($arrayObj)
     {
         if (empty($arrayObj))
         {
             return null;
         }
+
         foreach($arrayObj as $item)
         {
-            $groups[] = TypeGroup::fromValues($item);        
+            $responseDTO[] = new ResponseUserInGroups($item);        
         }
-        return $groups;
+
+        return $responseDTO;
     }
 
 }
