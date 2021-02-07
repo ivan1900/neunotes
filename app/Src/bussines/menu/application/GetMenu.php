@@ -8,22 +8,13 @@ use App\Src\bussines\menu\infrastructure\MenuRepositoryMySql;
 
 Class GetMenu
 {
-    private $menuFront;
     private $menuBackend;
     //tomara por inyección los datos recibidos de los roles y pedira los menus que necesite
-    public function __construct($typeGroups)
+    public function __construct($menuAuthIsAdmin)
     {
         $this->menuBackend = false;
-        $this->manuFront = false;
-        foreach($typeGroups as $typeGroup)
-        {
-            if($typeGroup->menufront()){
-                $this->menuFront = true;
-            }
-            if($typeGroup->menubackend())
-            {
-                $this->menuBackend = true;
-            }
+        if ($menuAuthIsAdmin){
+            $this->menuBackend = true;
         }
     }
 
@@ -43,9 +34,7 @@ Class GetMenu
 
     private function filters()
     {
-        if ($this->menuFront){
-            $filters[] = new Filter(' or ','esfront','=',$this->menuFront);
-        }
+        $filters[] = new Filter(' or ','esfront','=',$this->menuFront);
         if ($this->menuBackend){
             $filters[] = new Filter(' or ','esbackend','=',$this->menuBackend);
         }

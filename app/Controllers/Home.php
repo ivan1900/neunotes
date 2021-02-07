@@ -28,7 +28,7 @@ class Home extends BaseController
 		try{
 			$menuAuth = $getMenuAuth($requestMenuAuth);
 		}catch(\Exception $e){
-			return redirect()->to(site_url(base_url().'/configfail'));
+			return redirect()->to(site_url('/configfail'));
 		}
 
 		SessionUserAdmin::handle($menuAuth);	
