@@ -5,6 +5,7 @@ use App\Src\bussines\menu\domain\Menus;
 use App\Src\bussines\session\application\GetSession;
 use App\Src\bussines\session\application\IsSession;
 use App\Src\bussines\session\application\SessionExceptionMessage;
+use App\Src\bussines\session\application\SessionUserAdmin;
 use App\Src\bussines\groups\application\GetGroupType;
 use App\Src\bussines\menu\application\GetMenu;
 use App\Src\bussines\groups\application\RequestMenuAuth;
@@ -24,29 +25,20 @@ class Home extends BaseController
 
 		$requestMenuAuth = new RequestMenuAuth($this->session->userUuid());
 		$getMenuAuth = new GetMenuAuth();
-		$menuAuth = $getMenuAuth($requestMenuAuth);
-		////////////////
-		
-		$groupType = new TypeGroups($this->getTypeGroup());
-			
-		if (is_null($groupType))
-		{
+		try{
+			$menuAuth = $getMenuAuth($requestMenuAuth);
+		}catch(\Exception $e){
 			return redirect()->to(site_url(base_url().'/configfail'));
 		}
+
+		SessionUserAdmin::handle($menuAuth);	
 		
-		$menu = new GetMenu($groupType);
+		$menu = new GetMenu($menuAuth);
 		$this->dataToMenu['menu'] = $menu->getItems();
 		$this->dataToMenu['user'] = $this->session->getUser();
 		$this->dataToMenu['actualPage'] = 'home';
 		
 		$this->renderView();
-	}
-
-	private function getTypeGroup()
-	{
-		$userUuid = $this->session->userUuid();
-		$groupType = new GetGroupType($userUuid);
-		return $groupType($userUuid);
 	}
 
 	private function renderView()

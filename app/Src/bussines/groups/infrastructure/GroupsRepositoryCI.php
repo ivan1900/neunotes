@@ -6,7 +6,7 @@ use App\Src\shared\infrastructure\codeigniter\CISelect;
 use App\Src\shared\infrastructure\codeigniter\CriteriaToSql;
 use App\Src\shared\domain\criteria\Criteria;
 use App\Src\bussines\groups\domain\TypeGroup;
-
+//Ahora no tiene uso
 final class GroupsRepositoryCI extends CIRepository implements IGroupsRepository
 {
     public function searchByCriteria(Criteria $criteria): ?array

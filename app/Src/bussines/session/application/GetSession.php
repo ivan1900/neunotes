@@ -6,7 +6,11 @@ final class GetSession
 {
     public static function entity()
     {
-        $session = new EntitySession($_SESSION['userName'],$_SESSION['language'],$_SESSION['userUuid']);
+        $session = new EntitySession(
+            $_SESSION['userName'],
+            $_SESSION['language'],
+            $_SESSION['userUuid'],
+            isset($_SESSION['isUserAdmin']) ? $_SESSION['isUserAdmin'] : null);
         return $session;
     }
 }
