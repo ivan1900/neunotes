@@ -9,15 +9,15 @@ final class Group
 {
     private $uuid;
     private $name;
-    private $menufront;
-    private $menubackend;
+    private $menuFront;
+    private $menuBackend;
     
     public function __construct(GroupUuid $uuid, GroupName $name, GroupMenuBackend $menuBackend, GroupMenuFront $menuFront)
     {
         $this->uuid = $uuid;
         $this->name = $name;
-        $this->menufront = $menuFront;
-        $this->menuBackend = $menubackend;
+        $this->menuFront = $menuFront;
+        $this->menuBackend = $menuBackend;
     }
 
     public static function fromValues(object $values):self
@@ -25,8 +25,8 @@ final class Group
         return new self(
             $values->uuid,
             $values->name, 
-            $values->menufront, 
-            $values->menubackend);
+            $values->menuFront, 
+            $values->menuBackend);
     }
 
     public function uuid()
@@ -41,12 +41,12 @@ final class Group
 
     public function menuFront()
     {
-        return $this->menufront;
+        return $this->menuFront;
     }
 
     public function menuBackend()
     {
-        return $this->menubackend;
+        return $this->menuBackend;
     }
 
 }

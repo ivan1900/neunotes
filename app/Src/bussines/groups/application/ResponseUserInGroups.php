@@ -2,22 +2,22 @@
 
 final class ResponseUserInGroups 
 {
-    private $menuAdmin;
+    private $menuFront;
     private $menuBackend;
     private $name;
     private $groupUuid;
 
     public function __construct($values)
     {
-        $this->menuAdmin = $values->menuAdmin;
-        $this->menuBackend = $values->menuBackend;
+        $this->menuFront = $values->menufront;
+        $this->menuBackend = $values->menubackend;
         $this->name = $values->name;
         $this->groupUuid = $values->groupUuid;
     }
 
-    public function menuAdmin()
+    public function menuFront()
     {
-        return $this->menuAdmin;
+        return $this->menuFront;
     }
 
     public function menuBackend()

@@ -31,8 +31,10 @@ final class GetMenuAuth
         $isMenuAdminSpecification = new IsMenuAdminSpecification();
         foreach($response as $value){
             $assemblyGroup = new assemblyGroup($value);
-            $group = new Group($assemblyGroup->groupUuid(),$assemblyGroup->name(),$assemblyGroup->menuBackend(),$assemblyGroup->menuFront());
-            if ($isMenuAdminSpecification->isSatisfiedBy($group)){return true;}
+            $group = new Group($assemblyGroup->groupUuid(),$assemblyGroup->groupName(),$assemblyGroup->menuBackend(),$assemblyGroup->menuFront());
+            $test = $isMenuAdminSpecification->isSatisfiedBy($group); 
+            if ($isMenuAdminSpecification->isSatisfiedBy($group) == true){
+                return true;}
         }
         return false;
     }

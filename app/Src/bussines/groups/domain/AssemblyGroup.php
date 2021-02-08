@@ -12,7 +12,7 @@ final class AssemblyGroup
     private $groupMenuBackend;
     private $groupMenuFront;
 
-    public function construct($value)
+    public function __construct($value)
     {
         $this->groupUuid = GroupUuid::fromValues($value->groupUuid());
         $this->groupName = GroupName::fromValues($value->name());
@@ -32,11 +32,11 @@ final class AssemblyGroup
 
     public function menuBackend()
     {
-        return $this->menuBackend;
+        return $this->groupMenuBackend;
     }
 
     public function menuFront()
     {
-        return $this->menuFront;
+        return $this->groupMenuFront;
     }
 }

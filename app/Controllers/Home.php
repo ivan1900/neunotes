@@ -5,7 +5,7 @@ use App\Src\bussines\menu\domain\Menus;
 use App\Src\bussines\session\application\GetSession;
 use App\Src\bussines\session\application\IsSession;
 use App\Src\bussines\session\application\SessionExceptionMessage;
-use App\Src\bussines\session\application\SessionUserAdmin;
+use App\Src\bussines\session\application\SessionIsUserAdmin;
 use App\Src\bussines\groups\application\GetGroupType;
 use App\Src\bussines\menu\application\GetMenu;
 use App\Src\bussines\groups\application\RequestMenuAuth;
@@ -31,7 +31,7 @@ class Home extends BaseController
 			return redirect()->to(site_url('/configfail'));
 		}
 
-		SessionUserAdmin::handle($menuAuth);	
+		SessionIsUserAdmin::handle($menuAuth);	
 		
 		$menu = new GetMenu($menuAuth);
 		$this->dataToMenu['menu'] = $menu->getItems();

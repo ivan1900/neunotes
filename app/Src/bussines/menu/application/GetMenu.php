@@ -34,7 +34,7 @@ Class GetMenu
 
     private function filters()
     {
-        $filters[] = new Filter(' or ','esfront','=',$this->menuFront);
+        $filters[] = new Filter(' or ','esfront','=','true');
         if ($this->menuBackend){
             $filters[] = new Filter(' or ','esbackend','=',$this->menuBackend);
         }
