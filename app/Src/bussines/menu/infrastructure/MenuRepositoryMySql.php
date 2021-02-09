@@ -1,24 +1,18 @@
 <?php namespace App\Src\bussines\menu\infrastructure;
 
 use App\Src\bussines\menu\domain\IMenuRepository;
-use App\Src\shared\infrastructure\codeigniter\CIRepository;
-use App\Src\shared\infrastructure\codeigniter\CISelect;
-use App\Src\shared\infrastructure\codeigniter\CriteriaToSql;
-use App\Src\shared\domain\criteria\Criteria;
-use App\Src\bussines\menu\domain\Menu;
+use App\Src\bussines\menu\application\ResponseMenu;
 
 final class MenuRepositoryMySql extends CIRepository implements IMenuRepository
 {
-    public function searchByCriteria(Criteria $criteria): ?array
+    public function getMenu($esAdmin)
     {
-        $criteriaSQL = new CriteriaToSql($criteria);
-        $select = new CISelect($criteriaSQL);
-        $arrayObj = $this->db->selectSql($select->querySelect());
-        $menu = $this->convertToMenu($arrayObj);
-        return $menu;
+        $sql = 'SELECT * FROM menu WHERE esfront = 1 and esbackend = {$esAdmin}';
+        $result = $this->db->selectSql($sql);
+        return $this->madeArrayDto($result);
     }
 
-    public function convertToMenu($arrayObj)
+    public function madeArryDto($arrayObj)
     {
         if (empty($arrayObj))
         {
@@ -26,9 +20,9 @@ final class MenuRepositoryMySql extends CIRepository implements IMenuRepository
         }
         foreach($arrayObj as $item)
         {
-            $groups[] = Menu::fromValues($item);        
+            $collection[] = new ResponseMenu($item);        
         }
-        return $groups;
+        return $collection;
     }
 
 }
