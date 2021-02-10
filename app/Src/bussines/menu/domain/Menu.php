@@ -3,29 +3,29 @@
 final class Menu 
 {
     private $id;
-    private $elemento;
-    private $nivel;
-    private $ruta;
+    private $item;
+    private $level;
+    private $route;
     private $fa;
-    private $padre;
-    private $esfront;
-    private $esbackend;
+    private $parent;
+    private $isfront;
+    private $isbackend;
 
-    public function __construct(int $id, string $elemento, int $nivel, string $ruta, string $fa, int $padre, bool $esfront, bool $esbackend)
+    public function __construct(int $id, string $item, int $level, string $route, string $fa, int $parent, bool $isfront, bool $isbackend)
      {
         $this->id = $id;
-        $this->elemento = $elemento;
-        $this->nivel = $nivel;
-        $this->ruta = $ruta;
+        $this->item = $item;
+        $this->level = $level;
+        $this->route = $route;
         $this->fa = $fa;
-        $this->padre = $padre;
-        $this->esfront = $esfront;
-        $this->esbackend = $esbackend;
+        $this->parent = $parent;
+        $this->isfront = $isfront;
+        $this->isbackend = $isbackend;
      }
 
      public static function fromValues(object $values):Self
      {
-        return new self($values->id, $values->elemento, $values->nivel, $values->ruta, $values->fa, $values->padre, $values->esfront, $values->esbackend);
+        return new self($values->id, $values->item, $values->level, $values->route, $values->fa, $values->parent, $values->isfront, $values->isbackend);
      }
 
      public function id()
@@ -33,19 +33,19 @@ final class Menu
         return $this->id;
      }
 
-     public function elemento()
+     public function item()
      {
-         return $this->elemento;
+         return $this->item;
      }
 
-     public function nivel()
+     public function level()
      {
-         return $this->nivel;
+         return $this->level;
      }
 
-     public function ruta()
+     public function route()
      {
-         return $this->ruta;
+         return $this->route;
      }
 
      public function fa()
@@ -53,17 +53,17 @@ final class Menu
          return $this->fa;
      }
 
-     public function padre()
+     public function parent()
      {
-         return $this->padre;
+         return $this->parent;
      }
 
-     public function esfront()
+     public function isfront()
      {
-         return $this->esfront;
+         return $this->isfront;
      }
 
-     public function esbackend()
+     public function isbackend()
      {
          return $this->esbacked;
      }

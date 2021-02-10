@@ -3,24 +3,24 @@
 class ResponseMenu
 {
     private $id;
-    private $elemento;
-    private $nivel;
-    private $ruta;
+    private $item;
+    private $level;
+    private $route;
     private $fa;
-    private $padre;
-    private $esfront;
-    private $esbackend;
+    private $parent;
+    private $isfront;
+    private $isbackend;
 
-    public function __construct($id, $elemento, $nivel, $ruta, $fa, $padre, $esfront, $esbackend)
+    public function __construct($id, $item, $level, $route, $fa, $parent, $isfront, $isbackend)
     {
         $this->id = $id;
-        $this->elemento = $elemento;
-        $this->nivel = $nivel;
-        $this->ruta = $ruta;
+        $this->item = $item;
+        $this->level = $level;
+        $this->route = $route;
         $this->fa = $fa;
-        $this->padre = $padre;
-        $this->esfront = $esfront;
-        $this->esbackend = $esbackend;
+        $this->parent = $parent;
+        $this->isfront = $isfront;
+        $this->isbackend = $isbackend;
     }
 
     public function id()
@@ -28,19 +28,19 @@ class ResponseMenu
         return $this->id;
      }
 
-     public function elemento()
+     public function item()
      {
-         return $this->elemento;
+         return $this->item;
      }
 
-     public function nivel()
+     public function level()
      {
-         return $this->nivel;
+         return $this->level;
      }
 
-     public function ruta()
+     public function route()
      {
-         return $this->ruta;
+         return $this->route;
      }
 
      public function fa()
@@ -48,17 +48,17 @@ class ResponseMenu
          return $this->fa;
      }
 
-     public function padre()
+     public function parent()
      {
-         return $this->padre;
+         return $this->parent;
      }
 
-     public function esfront()
+     public function isfront()
      {
-         return $this->esfront;
+         return $this->isfront;
      }
 
-     public function esbackend()
+     public function isbackend()
      {
          return $this->esbacked;
      }

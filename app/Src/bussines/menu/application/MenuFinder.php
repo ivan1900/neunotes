@@ -11,9 +11,9 @@ Class MenuFinder
         $this->repository = $repository;
     }
 
-    public function __invoke($criteria)
+    public function __invoke($menuIsAdmin)
     {
-        $menu = $this->repository->searchByCriteria($criteria);
+        $menu = $this->repository->getMenu($menuIsAdmin);
         return $menu;
     }
 }
