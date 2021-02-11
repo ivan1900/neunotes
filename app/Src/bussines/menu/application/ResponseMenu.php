@@ -11,16 +11,16 @@ class ResponseMenu
     private $isfront;
     private $isbackend;
 
-    public function __construct($id, $item, $level, $route, $fa, $parent, $isfront, $isbackend)
+    public function __construct($values)
     {
-        $this->id = $id;
-        $this->item = $item;
-        $this->level = $level;
-        $this->route = $route;
-        $this->fa = $fa;
-        $this->parent = $parent;
-        $this->isfront = $isfront;
-        $this->isbackend = $isbackend;
+        $this->id = $values->id;
+        $this->item = $values->elemento;
+        $this->level = $values->nivel;
+        $this->route = $values->ruta;
+        $this->fa = $values->fa;
+        $this->parent = $values->padre;
+        $this->isfront = $values->esfront;
+        $this->isbackend = $values->esbackend;
     }
 
     public function id()

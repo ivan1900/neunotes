@@ -8,7 +8,12 @@ final class MenuRepositoryMySql extends CIRepository implements IMenuRepository
 {
     public function getMenu($isAdmin): ?array
     {
-        $sql = 'SELECT * FROM menu WHERE esfront = 1 and esbackend = ' . $isAdmin;
+        $sql = 'SELECT * FROM menu WHERE esfront = 1';
+
+        if ($isAdmin){
+            $sql = 'SELECT * FROM menu WHERE esbackend = 1';
+        }
+        
         $result = $this->db->selectSql($sql);
         return $this->madeArrayDto($result);
     }

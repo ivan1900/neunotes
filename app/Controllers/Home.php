@@ -32,10 +32,10 @@ class Home extends BaseController
 		}
 
 		SessionIsUserAdmin::handle($menuAuth);	
+		$menu = new GetMenu();
 		
-		$menu = new GetMenu($menuAuth);
-		$this->dataToMenu['menu'] = $menu;
-		$this->dataToMenu['user'] = $this->session->getUser();
+		$this->dataToMenu['menu'] = $menu->execute($menuAuth);
+		$this->dataToMenu['user'] = $this->session->userName();
 		$this->dataToMenu['actualPage'] = 'home';
 		
 		$this->renderView();

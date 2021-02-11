@@ -21,20 +21,20 @@
                 </div>
             </li>
                 <?php foreach ($menu as $item): ?>
-                    <?php if($item->nivel() == "1"): ?>
-                        <li  <?php if($actualPage == $item->ruta()): ?>
+                    <?php if($item->level() == "1"): ?>
+                        <li  <?php if($actualPage == $item->route()): ?>
                                 class="active"
                             <?php endif ?>>
-                            <a href="<?=base_url() . '/' . $item->ruta(); ?>"><i class="fa <?= $item->fa(); ?>"></i> <span class="nav-label"><?= $item->elemento() ?>
-                            <?php if ($item->padre() == 1): ?>
+                            <a href="<?=base_url() . '/' . $item->route(); ?>"><i class="fa <?= $item->fa(); ?>"></i> <span class="nav-label"><?= $item->item() ?>
+                            <?php if ($item->parent() == 1): ?>
                                 </span> <span class="fa arrow"></span>
                             <?php endif ?>
                             </a>
                         </li>
-                    <?php elseif($item->nivel() == "2"): ?>
+                    <?php elseif($item->level() == "2"): ?>
                         <ul class="nav nav-second-level collapse">
                             <li>
-                                <a href="<?=$base_url . $item->ruta(); ?>"><?= $item->elemento() ?></a>
+                                <a href="<?=$base_url . $item->route(); ?>"><?= $item->item() ?></a>
                             </li>
                         </ul>
                     <?php endif ?>
