@@ -24,7 +24,7 @@ final class GetMenuAuth
         }
         catch (UserNotGroups $e)
         {
-            SessionExceptionMessage::setExceptionMessage($e);
+            SessionExceptionMessage::setHackExceptionMessage($e);
             return null;
         }
 
