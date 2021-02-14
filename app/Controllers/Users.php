@@ -1,23 +1,20 @@
 <?php namespace App\Controllers;
 
-use App\Src\bussines\session\domain\IEntitySession;
-use App\Src\bussines\session\domain\EntityException;
+
 use App\Src\bussines\session\application\GetSession;
 use App\Src\bussines\session\application\IsSession;
 use App\Src\bussines\session\application\SessionExceptionMessage;
-use App\Src\bussines\groups\application\GetGroupType;
-use App\Src\bussines\groups\domain\TypeGroups;
-use App\Src\bussines\menu\domain\Menus;
 use App\Src\bussines\menu\application\GetMenu;
-use App\Src\bussines\language\application\CurrentLanguage;
 use App\Src\bussines\users\application\GetUsersList;
+use App\Src\bussines\language\application\CurrentLanguage;
+//use App\Src\bussines\language\application\LanguageErrorCodes;
 
 class Users extends BaseController
 {
 	private $dataToView;
 	private $dataToMenu;
 	private $dataToTopbar;
-	private $language;
+	
 	
 	public function index()
 	{
@@ -25,39 +22,19 @@ class Users extends BaseController
 
 		$this->dataToView['exception']	= new sessionExceptionMessage();
 		$this->session = GetSession::entity();
-		$this->language = $this->session->getLanguage();
-		$this->getLanguage();
 
-		$groupType = new TypeGroups($this->getTypeGroup());
-		//$iterator = $groupType->getIterator();
-			
-		if (is_null($groupType))
-		{
-			return redirect()->to(site_url('/configfail'));
-		}
-		
-		$menu = new GetMenu($groupType);
-		$this->dataToMenu['menu'] = $menu->getItems();
-		$this->dataToMenu['user'] = $this->session->getUser();
+		$menu = new GetMenu();
+		$this->dataToMenu['user'] = $this->session->userName();
+		$this->dataToMenu['menu'] = $menu->execute($this->session->isUserAdmin());
 		$this->dataToMenu['actualPage'] = 'users';
+
+		$this->dataToView['langMap'] = CurrentLanguage::get($this->session->language());
+		$this->dataToTopbar['langMap'] = CurrentLanguage::get($this->session->language());
 
 		$getUsers = new GetUsersList();
 		$this->dataToView['usersList'] = $getUsers();
 		$this->renderView();
-	}
-
-	private function getTypeGroup()
-	{
-		$idUser = $this->session->getUserId();
-		$groupType = new GetGroupType($idUser);
-		return $groupType($idUser);
-	}
-
-	private function getLanguage()
-	{
-		$langObject = new CurrentLanguage($this->language);
-		$this->dataToView['langMap'] = $langObject->getLanguage();
-		$this->dataToTopbar['langMap'] = $langObject->getLanguage();
+		
 	}
 
 	private function renderView()
