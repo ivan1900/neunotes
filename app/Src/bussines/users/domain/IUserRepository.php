@@ -14,7 +14,7 @@ interface IUserRepository
 
     public function search($id);
 
-    public function searchByCriteria($criteriaSql);
+    public function searchByCriteria(IUserSpecification $specification);
 
     public function searchByUserName($usuario);
 }

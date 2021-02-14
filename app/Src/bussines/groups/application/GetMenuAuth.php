@@ -2,7 +2,7 @@
 
 //use App\Src\bussines\groups\domain\TypeGroup;
 use App\Src\bussines\groups\infrastructure\GroupsRepositoryMySql;
-use App\Src\bussines\groups\infrastructure\IsUserInGroupSQL;
+use App\Src\bussines\groups\infrastructure\IsUserInGroupSql;
 use App\Src\bussines\groups\domain\UserNotGroups;
 use App\Src\bussines\groups\domain\AssemblyGroup;
 use App\Src\bussines\groups\domain\Group;
