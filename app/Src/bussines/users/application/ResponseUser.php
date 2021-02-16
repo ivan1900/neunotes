@@ -2,16 +2,17 @@
 
 final class ResponseUser
 {
-    public function __construct(
-        $uuid,
-        $name,
-        $user,
-        $password,
-        $phone,
-        $email,
-        $address,
-        $position,
-    ){}
+    public function __construct($values)
+    {
+        $this->uuid = $values->uuid;
+        $this->name = $values->nombre;
+        $this->user = $values->usuario;
+        $this->password = $values->pass;
+        $this->phone = $values->telefono;
+        $this->email = $values->mail;
+        $this->address = $values->direccion;
+        $this->position = $values->cargo;
+    }
     
     public function uuid()
     {

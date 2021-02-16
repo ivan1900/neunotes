@@ -6,6 +6,7 @@ use App\Src\bussines\users\domain\User;
 use App\Src\bussines\users\domain\IUserRepository;
 use App\Src\bussines\users\domain\IUserSpecification;
 use App\Src\shared\infrastructure\codeigniter\CIRepository;
+use App\Src\bussines\users\application\ResponseUser;
 
 
 final class UserRepositoryMySql extends CIRepository implements IUserRepository
@@ -28,7 +29,7 @@ final class UserRepositoryMySql extends CIRepository implements IUserRepository
 
         foreach($arrayObj as $item)
         {
-            $responseDTO[] = new ResponseUserInGroups($item);        
+            $responseDTO[] = new ResponseUser($item);        
         }
 
         return $responseDTO;

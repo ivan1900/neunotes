@@ -1,36 +1,26 @@
 <?php namespace App\Src\bussines\users\application;
 
-use App\Src\shared\domain\criteria\Field;
-use App\Src\shared\domain\criteria\Criteria;
 use App\Src\bussines\users\domain\User;
 use App\Src\bussines\users\application\UserFinderList;
 use App\Src\bussines\users\infrastructure\UserRepositoryMySql;
+use App\Src\bussines\users\application\RequestUserList;
+use App\Src\bussines\users\infrastructure\IsUsersActive;
 
 class GetUsersList
 {
-    public function __construct()
+    private $isActive;
+
+    public function __construct(RequestUserList $request)
     {
-        
+        $this->isActive = $request->isActive();
     }
 
     public function __invoke()
     {
-
-
-        $criteria = new Criteria('usuarios',$this->fields(),null,null,null,null,null);
+        $isUsersActive = new IsUsersActive($this->isActive);
         $repository = new UserRepositoryMySql();
         $userFinder = new UserFinderList($repository);
-        return $userFinder($criteria);
+        return $userFinder($isUsersActive);
     }
 
-    private function fields()
-    {
-        $fields[0] = new Field('idusuario');
-        $fields[1] = new Field('nombre');
-        $fields[2] = new Field('usuario');
-        $fields[3] = new Field('rol');
-        $fields[4] = new Field('activo');
-        return $fields;
-    }
-  
 }

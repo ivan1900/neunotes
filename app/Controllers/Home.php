@@ -27,7 +27,7 @@ class Home extends BaseController
 		}catch(\Exception $e){
 			return redirect()->to(site_url('/configfail'));
 		}
-
+ 
 		SessionIsUserAdmin::handle($menuAuth);	
 		$menu = new GetMenu();
 		

@@ -10,7 +10,7 @@ use App\Src\shared\infrastructure\codeigniter\CriteriaToSql;
 class IsUsersActive implements IUserSpecification
 {
     public function __construct(
-        $isActive
+        private $isActive
         )
     {}
 
@@ -44,7 +44,7 @@ class IsUsersActive implements IUserSpecification
 
     private function filters()
     {
-        $filters[0] = new Filter(null,'interusergroup','=','"'.$this->userUuid.'"');
+        $filters[0] = new Filter(null,'activo','=','"'.$this->isActive.'"');
         return null;
     }
 

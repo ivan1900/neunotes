@@ -7,6 +7,8 @@ use App\Src\bussines\session\application\SessionExceptionMessage;
 use App\Src\bussines\menu\application\GetMenu;
 use App\Src\bussines\users\application\GetUsersList;
 use App\Src\bussines\language\application\CurrentLanguage;
+use App\Src\bussines\users\application\RequestUserList;
+
 //use App\Src\bussines\language\application\LanguageErrorCodes;
 
 class Users extends BaseController
@@ -14,8 +16,7 @@ class Users extends BaseController
 	private $dataToView;
 	private $dataToMenu;
 	private $dataToTopbar;
-	
-	
+
 	public function index()
 	{
 		if (!IsSession::result()) return redirect()->to(site_url('/login'));
@@ -31,10 +32,11 @@ class Users extends BaseController
 		$this->dataToView['langMap'] = CurrentLanguage::get($this->session->language());
 		$this->dataToTopbar['langMap'] = CurrentLanguage::get($this->session->language());
 
-		$getUsers = new GetUsersList();
+		$request = new RequestUserList($isActive = true);
+		$getUsers = new GetUsersList($request);
 		$this->dataToView['usersList'] = $getUsers();
-		$this->renderView();
 		
+		$this->renderView();
 	}
 
 	private function renderView()
