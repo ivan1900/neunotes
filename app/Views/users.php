@@ -33,10 +33,10 @@
                                 <?php if (!is_null($usersList)): ?>
                                 <?php foreach ($usersList as $item): ?>
                                 <tr class="gradeX">
-                                    <td><?= $item->nombre?></td>
-                                    <td><?= $item->usuario?></td>
-                                    <td><?= $item->rol?></td>
-                                    <td class="center"><?= $item->activo?></td>
+                                    <td><?= $item->name?></td>
+                                    <td><?= $item->user?></td>
+                                    <td><?= $item->position?></td>
+                                    <td class="center"><?= "si" ?></td>
                                     <td class="center"></td>
                                 </tr>
                                 <?php endforeach; ?>
