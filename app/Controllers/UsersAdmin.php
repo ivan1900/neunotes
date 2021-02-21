@@ -11,7 +11,7 @@ use App\Src\bussines\users\application\RequestUserList;
 
 //use App\Src\bussines\language\application\LanguageErrorCodes;
 
-class Users extends BaseController
+class UsersAdmin extends BaseController
 {
 	private $dataToView;
 	private $dataToMenu;
@@ -28,7 +28,7 @@ class Users extends BaseController
 		$this->dataToMenu['user'] = $this->session->userName();
 		$this->dataToMenu['menu'] = $menu->execute($this->session->isUserAdmin());
 		$this->dataToMenu['isAdmin'] = ($this->session->isUserAdmin());
-		$this->dataToMenu['actualPage'] = 'users';
+		$this->dataToMenu['actualPage'] = 'usersAdmin';
 
 		$this->dataToView['langMap'] = CurrentLanguage::get($this->session->language());
 		$this->dataToTopbar['langMap'] = CurrentLanguage::get($this->session->language());
@@ -42,12 +42,12 @@ class Users extends BaseController
 
 	private function renderView()
 	{
-		echo view('headers/header_users.php');
+		echo view('headers/header_usersAdmin.php');
         echo view('menu', $this->dataToMenu);
         echo view('bar/topbar',$this->dataToTopbar);
-        echo view('users', $this->dataToView);
+        echo view('admin/usersAdmin', $this->dataToView);
         echo view('bar/footbar');
-		echo view('footers/footer_users.php');
+		echo view('footers/footer_usersAdmin.php');
 	}
 
 	

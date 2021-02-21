@@ -1,4 +1,19 @@
-Vue.use(VueTables.ClientTable);
+var vm = new Vue({
+  el: '#app',
+  store: store,
+  components:{
+    'vueTableUsers': vueTableUsers
+  },
+  data:{
+
+  },
+  created: function() {
+    this.url = window.location.protocol + "//" + window.location.hostname;
+    store.state.url = this.url
+  }
+})
+
+/* Vue.use(VueTables.ClientTable);
 
 new Vue({
   el: "#app",
@@ -19,7 +34,7 @@ new Vue({
         'id', 'name'
         ],
       texts: {
-        filterPlaceholder: 'filter'
+        filterPlaceholder: 'filtro'
       }
     }
   }
@@ -36,4 +51,4 @@ function getData() {
     });
   }
   return arr;
-}
+} */
