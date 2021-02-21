@@ -10,11 +10,13 @@ class UsersRes extends BaseController
 {
     public function getUsersList()
     {
-        if (!IsSession::result()) return redirect()->to(site_url('/login'));
+        //if (!IsSession::result()) return redirect()->to(site_url('/login'));
         $this->session = GetSession::entity();
         $request = new RequestUserList($isActive = true);
         $getUsers = new GetUsersList($request);
-        $response = $getUsers();
+        $response['data'] = $getUsers();
+        $tmp = $response['data'][0];
+        $response['header'] = key($tmp);
         echo json_encode($response);
     }
 

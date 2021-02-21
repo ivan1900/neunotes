@@ -10,5 +10,5 @@ const store = new Vuex.Store({
     },
     modules: {
         userTable: vueTables2
-    },
+    }
 });
