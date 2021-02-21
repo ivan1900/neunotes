@@ -18,11 +18,10 @@
                 </div>
                 <div class="ibox-content">
                     <div id="app">
-                        <v-client-table :columns="columns" :data="data" :options="options">
-                            <a slot="email" slot-scope="props" :href="`mailto:${props.row.email}`">
-                                {{props.row.email}}
-                            </a>
-                        </v-client-table>
+                     <!--   <v-client-table :columns="$store.state.userTable.columns" :data="$store.state.userTable.data" :options="$store.state.userTable.options">
+                           
+                        </v-client-table> -->
+                        <vuetableusers></vuetableusers> 
                     </div>
                 </div>
 

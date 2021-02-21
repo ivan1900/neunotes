@@ -1,8 +1,10 @@
+//Vue.use(VueTables.ClientTable);
 var vm = new Vue({
   el: '#app',
   store: store,
   components:{
-    'vueTableUsers': vueTableUsers
+    'vueTables2': vueTables2,
+    'vuetableusers': vuetableusers
   },
   data:{
 
@@ -10,8 +12,13 @@ var vm = new Vue({
   created: function() {
     this.url = window.location.protocol + "//" + window.location.hostname;
     store.state.url = this.url
-  }
+    store.commit('userTable/setData')
+    
+  },
+
 })
+
+
 
 /* Vue.use(VueTables.ClientTable);
 

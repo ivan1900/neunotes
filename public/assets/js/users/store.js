@@ -1,14 +1,14 @@
 const store = new Vuex.Store({
     state: {
-        url: ""
+        url: "",
     },
     mutations: {
-
+        
     },
     actions: {
 
     },
     modules: {
-        vueTableUsers
+        userTable: vueTables2
     },
 });

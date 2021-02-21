@@ -1,33 +1,12 @@
-Vue.use(VueTables.ClientTable);
 
-const vueTableUsers = {
-    state: {
-        columns: [
-            'id',
-            'name',
-            'email'
-            ],
-          //data: getData(),
-          options: {
-            headings: {
-              id: 'id',
-              name: 'name',
-              email: 'email'
-            },
-            sortable: [
-              'id', 'name'
-              ],
-            texts: {
-              filterPlaceholder: 'filtro'
-            }
-          }
+var vuetableusers = ({
+    template: //HTML
+    `
+    <div>
+        <v-client-table :columns="$store.state.userTable.columns" :data="$store.state.userTable.data" :options="$store.state.userTable.options">
+        </v-client-table>
+    </div>
+    `,
+    methods: {
     },
-    actions: {
-        LoadLanguage: async function ({commit, rootState}){
-
-        },
-        LoadUsers: async function ({commit, rootState}){
-
-        }
-    }
-}
+})
