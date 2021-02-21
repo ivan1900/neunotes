@@ -41,12 +41,14 @@ const vueTables2 = {
         loadUsers: async function({rootState}) {
             axios
                 .get(rootState.url + '/UsersRes/getUsersList')
-                .then(response => {
-                    console.log(response.data)
+                .then((response) => {
+                    var tmp = response.data
+                    console.log((tmp))
+                    
                     //commit('setData', response.data)
 
                 })
-                .catch(error =>{
+                .catch((error) =>{
                     console.log(error)
                 })
         }

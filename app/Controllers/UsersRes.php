@@ -14,10 +14,21 @@ class UsersRes extends BaseController
         $this->session = GetSession::entity();
         $request = new RequestUserList($isActive = true);
         $getUsers = new GetUsersList($request);
-        $response['data'] = $getUsers();
-        $tmp = $response['data'][0];
-        $response['header'] = key($tmp);
-        echo json_encode($response);
+        $response['users'] = (array) $getUsers();
+        foreach($response['users'][0] as $key => $item)
+        {
+            $header[] = $key;
+        }
+        unset($response['users']);
+        $response['header'] = $header;
+
+        $ej = [];
+        $ej[] = 'hola';
+        $ej[] = 'pepo';
+        $ej[] = 'mondongo';
+ 
+        $result['ej'] = $ej;
+        return '"'. json_encode($result,JSON_FORCE_OBJECT) . '"';
     }
 
     public function getUsersListLanguage()
