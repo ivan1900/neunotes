@@ -38,7 +38,7 @@ class Login extends BaseController
                 $authUser = new UserLoginCheck($requestLogin);
             }catch (\Exception $e){
                 SessionExceptionMessage::setHackExceptionMessage($language[$e->getMessage()]);
-                return redirect()->to(site_url('login')); 
+                //return redirect()->to(site_url('login')); 
             }
             
             if ($authUser->execute()){
