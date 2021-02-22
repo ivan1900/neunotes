@@ -19,16 +19,10 @@ class UsersRes extends BaseController
         {
             $header[] = $key;
         }
-        unset($response['users']);
+        //unset($response['users']);
         $response['header'] = $header;
-
-        $ej = [];
-        $ej[] = 'hola';
-        $ej[] = 'pepo';
-        $ej[] = 'mondongo';
- 
-        $result['ej'] = $ej;
-        return '"'. json_encode($result,JSON_FORCE_OBJECT) . '"';
+        $result = $response;
+        echo json_encode($result,JSON_FORCE_OBJECT);
     }
 
     public function getUsersListLanguage()

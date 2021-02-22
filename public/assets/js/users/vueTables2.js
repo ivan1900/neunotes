@@ -42,9 +42,11 @@ const vueTables2 = {
             axios
                 .get(rootState.url + '/UsersRes/getUsersList')
                 .then((response) => {
-                    var tmp = response.data
-                    console.log((tmp))
-                    
+                    var header = response.data.header
+                    var users = response.data.users
+                    console.log(header)
+                    console.log(users)
+
                     //commit('setData', response.data)
 
                 })
