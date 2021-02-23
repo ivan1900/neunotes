@@ -4,19 +4,17 @@ const vueTables2 = {
     namespaced: true,
     state: {
         columns: [
-            'id',
-            'name',
-            'email'
+            'id'
         ],
-        data: null,
+        data: [
+            0
+        ],
         options: {
             headings: {
                 id: 'id',
-                name: 'name',
-                email: 'email'
             },
             sortable: [
-                'id', 'name'
+                'id'
             ],
             texts: {
                 filterPlaceholder: 'filtro'
@@ -24,7 +22,10 @@ const vueTables2 = {
         }
     },
     mutations: {
-        setData(state) {
+        setHeader(state, header){
+            state.columns = header
+        },
+        setData(state, users) {
             const arr = []
             for (i = 0; i < 20; i++) {
                 arr.push({
@@ -34,11 +35,13 @@ const vueTables2 = {
                     'group_name': 'Personnel'
                 });
             }
+            console.log('se ejecuta')
             state.data = arr
+            this.$refs.mytable.refresh()
         }
     },
     actions: {
-        loadUsers: async function({rootState}) {
+        loadUsers: async function({commit, rootState}) {
             axios
                 .get(rootState.url + '/UsersRes/getUsersList')
                 .then((response) => {
@@ -46,9 +49,8 @@ const vueTables2 = {
                     var users = response.data.users
                     console.log(header)
                     console.log(users)
-
-                    //commit('setData', response.data)
-
+                    commit('setData', response.data)
+                    //commit('setHeader', response.header)
                 })
                 .catch((error) =>{
                     console.log(error)
