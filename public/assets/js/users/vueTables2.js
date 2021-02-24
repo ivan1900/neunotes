@@ -3,19 +3,12 @@ Vue.use(VueTables.ClientTable);
 const vueTables2 = {
     namespaced: true,
     state: {
-        columns: [
-            'id'
-        ],
+        columns: [],
         data: [
             0
         ],
         options: {
-            headings: {
-                id: 'id',
-            },
-            sortable: [
-                'id'
-            ],
+            sortable: [],
             texts: {
                 filterPlaceholder: 'filtro'
             }
@@ -24,20 +17,10 @@ const vueTables2 = {
     mutations: {
         setHeader(state, header){
             state.columns = header
+            state.options.sortable = header
         },
         setData(state, users) {
-            const arr = []
-            for (i = 0; i < 20; i++) {
-                arr.push({
-                    'id': i,
-                    'name': `sample${i}`,
-                    'email': `sample${i}@example.com`,
-                    'group_name': 'Personnel'
-                });
-            }
-            console.log('se ejecuta')
-            state.data = arr
-            this.$refs.mytable.refresh()
+            state.data = users
         }
     },
     actions: {
@@ -45,12 +28,8 @@ const vueTables2 = {
             axios
                 .get(rootState.url + '/UsersRes/getUsersList')
                 .then((response) => {
-                    var header = response.data.header
-                    var users = response.data.users
-                    console.log(header)
-                    console.log(users)
-                    commit('setData', response.data)
-                    //commit('setHeader', response.header)
+                    commit('setHeader', response.data.header)
+                    commit('setData', response.data.users)
                 })
                 .catch((error) =>{
                     console.log(error)

@@ -22,7 +22,7 @@ class UsersRes extends BaseController
         //unset($response['users']);
         $response['header'] = $header;
         $result = $response;
-        echo json_encode($result,JSON_FORCE_OBJECT);
+        echo json_encode($result);
     }
 
     public function getUsersListLanguage()
