@@ -4,6 +4,7 @@ use App\Src\bussines\session\application\GetSession;
 use App\Src\bussines\session\application\IsSession;
 use App\Src\bussines\users\application\GetUsersList;
 use App\Src\bussines\language\application\CurrentLanguage;
+use App\Src\bussines\language\application\LanguageVueTable2;
 use App\Src\bussines\users\application\RequestUserList;
 
 class UsersRes extends BaseController
@@ -21,8 +22,8 @@ class UsersRes extends BaseController
         }
         //unset($response['users']);
         $response['header'] = $header;
-        $result = $response;
-        echo json_encode($result);
+        $response['vueTable2Language'] = LanguageVueTable2::get($this->session->language());
+        echo json_encode($response);
     }
 
     public function getUsersListLanguage()
@@ -40,6 +41,7 @@ class UsersRes extends BaseController
             'position' => $langMap['position'],
             'options' => $langMap['options']
         ]; 
+        
         echo json_encode($response);
     }
 

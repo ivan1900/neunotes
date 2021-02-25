@@ -15,6 +15,9 @@ const vueTables2 = {
         }
     },
     mutations: {
+        setLanguage(state, language){
+            state.options.texts = language
+        },
         setHeader(state, header){
             state.columns = header
             state.options.sortable = header
@@ -28,6 +31,7 @@ const vueTables2 = {
             axios
                 .get(rootState.url + '/UsersRes/getUsersList')
                 .then((response) => {
+                    commit('setLanguage', response.data.vueTable2Language)
                     commit('setHeader', response.data.header)
                     commit('setData', response.data.users)
                 })
