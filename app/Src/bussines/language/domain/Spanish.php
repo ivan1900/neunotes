@@ -46,7 +46,11 @@ class Spanish
             'showing' => 'Mostrando',
             'to' => 'a',
             'of' => 'de',
-            'position' => 'cargo',
+            'address' => 'Dirección',
+            'uuid' => 'Uuid',
+            'password' => 'Contraseña',
+            'phone' => 'Teléfono',
+            'position' => 'Cargo',
             'administrator' => 'Administrador',
             '1000' => 'Usuario o contraseña invalidos', 
             '1001' => 'El usuario no existe'

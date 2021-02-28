@@ -12,8 +12,8 @@ var vm = new Vue({
   created: function() {
     this.url = window.location.protocol + "//" + window.location.hostname;
     store.state.url = this.url
+    store.state.endPoint = '/UsersRes/getUsersList'
     store.dispatch('userTable/loadUsers')
-    //store.commit('userTable/setData')
     
   },
 

@@ -20,29 +20,23 @@ class UsersRes extends BaseController
         {
             $header[] = $key;
         }
-        //unset($response['users']);
+        
         $response['header'] = $header;
+        $response['heading'] = $this->translate($header);
         $response['vueTable2Language'] = LanguageVueTable2::get($this->session->language());
         echo json_encode($response);
     }
 
-    public function getUsersListLanguage()
+    private function translate($header)
     {
-       // if (!IsSession::result()) return redirect()->to(site_url('/login'));
         $this->session = GetSession::entity();
         $langMap = CurrentLanguage::get($this->session->language());
-        $response['$langMap'] = [
-            'filter' => $langMap['filter'],
-            'records' => $langMap['records'],
-            'showing' => $langMap['showing'],
-            'to' => $langMap['to'],
-            'of' => $langMap['of'],
-            'name' => $langMap['name'],
-            'position' => $langMap['position'],
-            'options' => $langMap['options']
-        ]; 
+        foreach($header as $item)
+        {
+            $response[$item] = $langMap[$item];
+        }
         
-        echo json_encode($response);
+        return($response);
     }
 
 }

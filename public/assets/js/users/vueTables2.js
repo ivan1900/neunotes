@@ -24,15 +24,19 @@ const vueTables2 = {
         },
         setData(state, users) {
             state.data = users
+        },
+        setHeading(state, heading){
+            state.options.headings = heading
         }
     },
     actions: {
         loadUsers: async function({commit, rootState}) {
             axios
-                .get(rootState.url + '/UsersRes/getUsersList')
+                .get(rootState.url + rootState.endPoint)
                 .then((response) => {
                     commit('setLanguage', response.data.vueTable2Language)
                     commit('setHeader', response.data.header)
+                    commit('setHeading', response.data.heading)
                     commit('setData', response.data.users)
                 })
                 .catch((error) =>{
