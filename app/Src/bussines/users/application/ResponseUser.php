@@ -1,5 +1,7 @@
 <?php namespace App\Src\bussines\users\application;
 
+use Exception;
+
 final class ResponseUser
 {
     public function __construct($values)
@@ -7,7 +9,11 @@ final class ResponseUser
         $this->uuid = $values->uuid;
         $this->name = $values->nombre;
         $this->user = $values->usuario;
-        $this->password = $values->pass;
+        try{
+            $this->password =  $values->pass;
+        }catch(Exception $e){
+            $this->password = null;
+        }
         $this->phone = $values->telefono;
         $this->email = $values->mail;
         $this->address = $values->direccion;

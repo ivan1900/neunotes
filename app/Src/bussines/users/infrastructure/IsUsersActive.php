@@ -33,7 +33,7 @@ class IsUsersActive implements IUserSpecification
 
     private function fields()
     {
-        $fields[0] = new Field('*');
+        $fields[0] = new Field('uuid, nombre, usuario, cargo, direccion, telefono, mail, activo, rol, borrado, created_at, updated_at, deleted_at');
         return $fields;
     }
     
