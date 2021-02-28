@@ -4,9 +4,9 @@ use App\Src\bussines\session\application\GetSession;
 use App\Src\bussines\session\application\IsSession;
 use App\Src\bussines\session\application\SessionExceptionMessage;
 use App\Src\bussines\menu\application\GetMenu;
-use App\Src\bussines\users\application\GetUsersList;
 use App\Src\bussines\language\application\CurrentLanguage;
-use App\Src\bussines\users\application\RequestUserList;
+//use App\Src\bussines\users\application\GetUsersList;
+//use App\Src\bussines\users\application\RequestUserList;
 
 //use App\Src\bussines\language\application\LanguageErrorCodes;
 
@@ -31,11 +31,11 @@ class Users extends BaseController
 
 		$this->dataToView['langMap'] = CurrentLanguage::get($this->session->language());
 		$this->dataToTopbar['langMap'] = CurrentLanguage::get($this->session->language());
-
+/*
 		$request = new RequestUserList($isActive = true);
 		$getUsers = new GetUsersList($request);
 		$this->dataToView['usersList'] = $getUsers();
-		
+*/		
 		$this->renderView();
 	}
 

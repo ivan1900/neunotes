@@ -1,6 +1,6 @@
-<?php namespace App\Src\bussines\groups\domain;
+<?php namespace App\Src\bussines\users\domain;
 
-interface IGroupsSpecification
+interface IUserSpecification
 {
     //public function isSatisfiedBy(Object $candidate): bool;
 

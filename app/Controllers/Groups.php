@@ -5,8 +5,8 @@ use App\Src\bussines\session\application\IsSession;
 use App\Src\bussines\session\application\SessionExceptionMessage;
 use App\Src\bussines\menu\application\GetMenu;
 use App\Src\bussines\language\application\CurrentLanguage;
-use App\Src\bussines\users\application\RequestGroupsList;
-/// para revisar
+//use App\Src\bussines\groups\application\RequestGroupsList;
+//use App\Src\bussines\groups\application\GetGroupsList;
 
 class Groups extends BaseController
 {
@@ -29,11 +29,11 @@ class Groups extends BaseController
 
 		$this->dataToView['langMap'] = CurrentLanguage::get($this->session->language());
 		$this->dataToTopbar['langMap'] = CurrentLanguage::get($this->session->language());
-
-		$request = new RequestGroupList($isActive = true);
-		$getUsers = new GetUsersList($request);
-		$this->dataToView['usersList'] = $getUsers();
-		
+/*
+		$request = new RequestGroupsList($isActive = true);
+		$getGroups = new GetGroupsList($request);
+		$this->dataToView['groupsList'] = $getGroups();
+*/		
 		$this->renderView();
     }
     

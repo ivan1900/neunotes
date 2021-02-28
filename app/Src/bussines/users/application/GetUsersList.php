@@ -1,6 +1,6 @@
 <?php namespace App\Src\bussines\users\application;
 
-use App\Src\bussines\users\domain\User;
+//use App\Src\bussines\users\domain\User;
 use App\Src\bussines\users\application\UserFinderList;
 use App\Src\bussines\users\infrastructure\UserRepositoryMySql;
 use App\Src\bussines\users\application\RequestUserList;
