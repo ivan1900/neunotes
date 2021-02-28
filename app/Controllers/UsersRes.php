@@ -11,7 +11,7 @@ class UsersRes extends BaseController
 {
     public function getUsersList()
     {
-        //if (!IsSession::result()) return redirect()->to(site_url('/login'));
+        if (!IsSession::result()) return redirect()->to(site_url('/login'));
         $this->session = GetSession::entity();
         $request = new RequestUserList($isActive = true);
         $getUsers = new GetUsersList($request);
