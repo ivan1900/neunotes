@@ -16,7 +16,7 @@ class IsUserInGroupSql implements IGroupsSpecification
         $this->userUuid = $userUuid;
     }
 
-    public function selectSatisfying():string 
+    public function isSatisfied():string 
     {
         $criteria = new Criteria(
             'grupos',

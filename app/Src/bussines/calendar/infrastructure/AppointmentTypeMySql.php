@@ -11,9 +11,9 @@ class AppointmentTypeMySql extends CIRepository implements IAppointmentTypeRepos
 {
     public function getAll(Criteria $criteria): ?array
     {
-        $criteriaSQL = new CriteriaToSql($criteria);
-        $select = new CISelect($criteriaSQL);
-        $arrayObj = $this->db->selectSql($select->querySelect());
+        //$criteriaSQL = new CriteriaToSql($criteria);
+        $select = "select * from appointmentstype";
+        $arrayObj = $this->db->selectSql($select);
         return $arrayObj;
     }
 

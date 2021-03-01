@@ -10,7 +10,7 @@ final class GroupsRepositoryMySql extends CIRepository implements IGroupsReposit
 {
     public function searchByCriteria(IGroupsSpecification $specification): ?array
     {
-        $sql = $specification->selectSatisfying();
+        $sql = $specification->isSatisfied();
         $arrayObj = $this->db->selectSql($sql);
         return $this->madeArrayDTO($arrayObj);
     }
