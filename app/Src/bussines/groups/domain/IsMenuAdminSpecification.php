@@ -5,6 +5,6 @@ use App\Src\bussines\groups\domain\Group;
 class IsMenuAdminSpecification
 {
     public function isSatisfiedBy(Group $group){
-        return $group->menuBackend();
+        return $group->menuBackend()->value();
     }
 }
