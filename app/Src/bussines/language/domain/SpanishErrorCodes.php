@@ -8,7 +8,8 @@ class SpanishErrorCodes
     {
         $this->langMap = [
             '1000' => 'Usuario o contraseña invalidos', 
-            '1001' => 'El usuario no existe'
+            '1001' => 'El usuario no existe',
+            '1003' => 'El grupo o grupos no existen'
         ];
     }
 

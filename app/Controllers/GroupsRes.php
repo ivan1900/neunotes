@@ -12,13 +12,15 @@ use App\Src\bussines\groups\application\GetGroupsList;
 
 class GroupsRes extends BaseController 
 {
-    public function getGroupsList()
+    public function getList()
     {
         if (!IsSession::result()) return redirect()->to(site_url('/login'));
         $this->session = GetSession::entity();
         $request = new RequestGroupsList($isActive = true);
 		$getGroups = new GetGroupsList($request);
-		echo json_encode($getGroups());
+        $response['groups'] = $getGroups();
+        print_r($response['groups']);
+        //echo json_encode($response);
     }
 
     public function userRemove()

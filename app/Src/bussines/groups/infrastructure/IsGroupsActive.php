@@ -33,7 +33,7 @@ class IsGroupsActive implements IGroupsSpecification
 
     private function fields()
     {
-        $fields[0] = new Field('uuid, nombre, usuario, cargo, direccion, telefono, mail, activo, rol, borrado, created_at, updated_at, deleted_at');
+        $fields[0] = new Field('uuid, name, menufront, menubackend, active, created_at, updated_at, deleted_at');
         return $fields;
     }
     
@@ -44,7 +44,7 @@ class IsGroupsActive implements IGroupsSpecification
 
     private function filters()
     {
-        $filters[0] = new Filter(null,'activo','=','"'.$this->isActive.'"');
+        $filters[] = new Filter(null,'active','=','"'.$this->isActive.'"');
         return null;
     }
 

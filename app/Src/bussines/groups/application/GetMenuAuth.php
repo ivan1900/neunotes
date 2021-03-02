@@ -1,6 +1,5 @@
 <?php namespace App\Src\bussines\groups\application;
 
-//use App\Src\bussines\groups\domain\TypeGroup;
 use App\Src\bussines\groups\infrastructure\GroupsRepositoryMySql;
 use App\Src\bussines\groups\infrastructure\IsUserInGroupSql;
 use App\Src\bussines\groups\domain\UserNotGroups;

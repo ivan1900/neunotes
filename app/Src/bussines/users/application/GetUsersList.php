@@ -17,10 +17,10 @@ class GetUsersList
 
     public function __invoke()
     {
-        $isUsersActive = new IsUsersActive($this->isActive);
+        $isActive = new IsUsersActive($this->isActive);
         $repository = new UserRepositoryMySql();
         $userFinder = new UserFinderList($repository);
-        return $userFinder($isUsersActive);
+        return $userFinder($isActive);
     }
 
 }

@@ -31,11 +31,7 @@ class Users extends BaseController
 
 		$this->dataToView['langMap'] = CurrentLanguage::get($this->session->language());
 		$this->dataToTopbar['langMap'] = CurrentLanguage::get($this->session->language());
-/*
-		$request = new RequestUserList($isActive = true);
-		$getUsers = new GetUsersList($request);
-		$this->dataToView['usersList'] = $getUsers();
-*/		
+
 		$this->renderView();
 	}
 

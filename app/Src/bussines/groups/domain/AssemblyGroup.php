@@ -14,7 +14,7 @@ final class AssemblyGroup
 
     public function __construct($value)
     {
-        $this->groupUuid = GroupUuid::fromValues($value->groupUuid());
+        $this->groupUuid = GroupUuid::fromValues($value->uuid());
         $this->groupName = GroupName::fromValues($value->name());
         $this->groupMenuBackend = GroupMenuBackend::fromValues($value->menuBackend());
         $this->groupMenuFront = GroupMenuFront::fromValues($value->menuFront());
