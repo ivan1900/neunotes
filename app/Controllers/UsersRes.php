@@ -16,7 +16,7 @@ class UsersRes extends BaseController
         $request = new RequestUserList($isActive = true);
         $getUsers = new GetUsersList($request);
         $response['users'] = (array) $getUsers();
-        print_r($response['users']);
+        //print_r($response['users']);
         foreach($response['users'][0] as $key => $item)
         {
             $header[] = $key;
@@ -25,7 +25,7 @@ class UsersRes extends BaseController
         $response['header'] = $header;
         $response['heading'] = $this->translate($header);
         $response['vueTable2Language'] = LanguageVueTable2::get($this->session->language());
-        //echo json_encode($response);
+        echo json_encode($response);
     }
 
     private function translate($header)

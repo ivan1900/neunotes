@@ -18,9 +18,10 @@ class GroupsRes extends BaseController
         $this->session = GetSession::entity();
         $request = new RequestGroupsList($isActive = true);
 		$getGroups = new GetGroupsList($request);
+
         $response['groups'] = $getGroups();
-        print_r($response['groups']);
-        //echo json_encode($response);
+        //print_r($response['groups']);
+        echo json_encode($response);
     }
 
     public function userRemove()

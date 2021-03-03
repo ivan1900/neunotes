@@ -2,64 +2,54 @@
 
 final class ResponseUserInGroups 
 {
-    private $menuFront;
-    private $menuBackend;
-    private $name;
-    private $uuid;
-    private $active;
-    private $created_at;
-    private $updated_at;
-    private $deleted_at;
 
-    public function __construct($values)
+    public function __construct(
+        private $values
+        )
+    {}
+
+    public function asArray()
     {
-        $this->menuFront = $values->menufront;
-        $this->menuBackend = $values->menubackend;
-        $this->name = $values->name;
-        $this->uuid = $values->uuid;
-        $this->active = $values->active;
-        $this->created_at = $values->created_at;
-        $this->updated_at = $values->updated_at;
-        $this->deleted_at = $values->deleted_at;
+        return $this->values;
     }
 
     public function menuFront()
     {
-        return $this->menuFront;
+        return $this->values->menufront;
     }
 
     public function menuBackend()
     {
-        return $this->menuBackend;
+        return $this->values->menubackend;
     }
 
     public function name()
     {
-        return $this->name;
+        return $this->values->name;
     }
 
     public function uuid()
     {
-        return $this->uuid;
+        return $this->values->uuid;
     }
 
     public function active()
     {
-        return $this->active;
+        return $this->values->active;
     }
 
     public function created_at()
     {
-        return $this->created_at;
+        return $this->values->created_at;
     }
 
     public function updated_at()
     {
-        return $this->updated_at;
+        return $this->values->updated_at;
     }
 
     public function deleted_at()
     {
-        return $this->deleted_at;
+        return $this->values->deleted_at;
     }
 }
