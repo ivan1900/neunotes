@@ -20,13 +20,7 @@ final class GetGroupsList
         $isActive = new IsGroupsActive($this->isActive);
         $repository = new GroupsRepositoryMySql();
         $userFinder = new GroupsFinderList($repository);
-        
-        $dtos = $userFinder($isActive);
-        foreach($dtos as $item){
-            $response[] = $item->asArray();
-        }
-        
-        return $response;
+        return $userFinder($isActive);
         
         /*
         try{

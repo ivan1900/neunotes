@@ -12,12 +12,9 @@ final class Field
         $this->field    = $field;
     }
 
-    public static function fromValues(array $values): self
+    public static function new($value): self
     {
-        return new self(
-           // $values['table'],
-            $values['field']
-        );
+        return new self($value);
     }
 
     public function item()

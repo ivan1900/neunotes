@@ -33,7 +33,7 @@ class IsGroupsActive implements IGroupsSpecification
 
     private function fields()
     {
-        $fields[0] = new Field('uuid, name, menufront, menubackend, active, created_at, updated_at, deleted_at');
+        $fields[0] = new Field('id, uuid, name, menufront, menubackend, active, created_at, updated_at, deleted_at');
         return $fields;
     }
     

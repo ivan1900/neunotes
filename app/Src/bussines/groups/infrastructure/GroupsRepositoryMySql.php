@@ -11,7 +11,7 @@ final class GroupsRepositoryMySql extends CIRepository implements IGroupsReposit
     public function searchByCriteria(IGroupsSpecification $specification): ?array
     {
         $sql = $specification->isSatisfied();
-        $arrayObj = $this->db->selectSql($sql);
+        $arrayObj = $this->db->selectSqlArray($sql);
         return $this->madeArrayDTO($arrayObj);
     }
 
@@ -24,7 +24,7 @@ final class GroupsRepositoryMySql extends CIRepository implements IGroupsReposit
 
         foreach($arrayObj as $item)
         {
-            $responseDTO[] = new ResponseUserInGroups($item);        
+            $responseDTO[] = ResponseUserInGroups::new(...$item);        
         }
 
         return $responseDTO;

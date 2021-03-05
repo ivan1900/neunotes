@@ -2,54 +2,61 @@
 
 final class ResponseUserInGroups 
 {
+    public static function new(...$args)
+    {        
+        return new self(...$args);
+    }
 
     public function __construct(
-        private $values
+        public $id,
+        public $menufront,
+        public $menubackend,
+        public $name,
+        public $uuid,
+        public $active,
+        public $created_at,
+        public $updated_at,
+        public $deleted_at
         )
     {}
 
-    public function asArray()
-    {
-        return $this->values;
-    }
-
     public function menuFront()
     {
-        return $this->values->menufront;
+        return $this->menufront;
     }
 
     public function menuBackend()
     {
-        return $this->values->menubackend;
+        return $this->menubackend;
     }
 
     public function name()
     {
-        return $this->values->name;
+        return $this->name;
     }
 
     public function uuid()
     {
-        return $this->values->uuid;
+        return $this->uuid;
     }
 
     public function active()
     {
-        return $this->values->active;
+        return $this->active;
     }
 
     public function created_at()
     {
-        return $this->values->created_at;
+        return $this->created_at;
     }
 
     public function updated_at()
     {
-        return $this->values->updated_at;
+        return $this->updated_at;
     }
 
     public function deleted_at()
     {
-        return $this->values->deleted_at;
+        return $this->deleted_at;
     }
 }

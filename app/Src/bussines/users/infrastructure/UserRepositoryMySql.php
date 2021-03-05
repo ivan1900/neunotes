@@ -11,7 +11,6 @@ use App\Src\bussines\users\application\ResponseUser;
 
 final class UserRepositoryMySql extends CIRepository implements IUserRepository
 {
-    private $table = 'usuarios';
 
     public function searchByCriteria(IUserSpecification $specification)
     {
@@ -52,12 +51,13 @@ final class UserRepositoryMySql extends CIRepository implements IUserRepository
 
     public function searchByUserName($usuario): ?User
     {
-        $arrayObj = $this->db->searchByName($this->table, 'usuario', $usuario);
+    /*    $arrayObj = $this->db->searchByName($this->table, 'usuario', $usuario);
         if (empty($arrayObj))
         {
             return null;
         }
         return new User($arrayObj->idusuario,$arrayObj->usuario,$arrayObj->pass,$arrayObj->rol);
+        */
     }
 
 }

@@ -34,7 +34,8 @@ class IsUserInGroupSql implements IGroupsSpecification
     
     private function fields()
     {
-        $fields[0] = new Field('*');
+        $fields[] =  new Field('grupos.id, grupos.uuid, grupos.name, grupos.menufront, grupos.menubackend, grupos.active,
+        grupos.created_at, grupos.updated_at, grupos.deleted_at');
         return $fields;
     }
     
