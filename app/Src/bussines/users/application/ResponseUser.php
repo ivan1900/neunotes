@@ -4,21 +4,22 @@ use Exception;
 
 final class ResponseUser
 {
-    public function __construct($values)
-    {
-        $this->uuid = $values->uuid;
-        $this->name = $values->nombre;
-        $this->user = $values->usuario;
-        try{
-            $this->password =  $values->pass;
-        }catch(Exception $e){
-            $this->password = null;
-        }
-        $this->phone = $values->telefono;
-        $this->email = $values->mail;
-        $this->address = $values->direccion;
-        $this->position = $values->cargo;
+    public static function new(...$args)
+    {        
+        return new self(...$args);
     }
+
+    public function __construct(
+        public $uuid,
+        public $name,
+        public $user,
+        public $phone,
+        public $email,
+        public $active,
+        public $address,
+        public $position,
+    )
+    {}
     
     public function uuid()
     {

@@ -9,8 +9,8 @@ final class ResponseLogin
     public function __construct($response)
     {
         //deben ser tipos primitivos :(
-        $this->user = $response['usuario'];
-        $this->password = $response['pass'];
+        $this->user = $response['user'];
+        $this->password = $response['password'];
         $this->uuid = $response['uuid'];
     }
 

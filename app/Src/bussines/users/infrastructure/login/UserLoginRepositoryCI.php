@@ -15,9 +15,9 @@ final class UserLoginRepositoryCI implements IUserLoginRepository
         $this->db = new UserLoginModel();
     }
 
-    public function searchByUserName($usuario)
+    public function searchByUserName($user)
     {
-        $entity = $this->db->find($usuario);
+        $entity = $this->db->find($user);
         if (empty($entity))
         {
             return null;

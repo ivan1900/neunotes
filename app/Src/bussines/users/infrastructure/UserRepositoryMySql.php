@@ -15,7 +15,7 @@ final class UserRepositoryMySql extends CIRepository implements IUserRepository
     public function searchByCriteria(IUserSpecification $specification)
     {
         $sql = $specification->isSatisfied();
-        $arrayObj = $this->db->selectSql($sql);
+        $arrayObj = $this->db->selectSqlArray($sql);
         return $this->madeArrayDTO($arrayObj);
     }
 
@@ -28,7 +28,7 @@ final class UserRepositoryMySql extends CIRepository implements IUserRepository
 
         foreach($arrayObj as $item)
         {
-            $responseDTO[] = new ResponseUser($item);        
+            $responseDTO[] = ResponseUser::new(...$item);        
         }
 
         return $responseDTO;

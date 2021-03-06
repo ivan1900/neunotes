@@ -17,7 +17,7 @@ class IsUsersActive implements IUserSpecification
     public function isSatisfied():string
     {
         $criteria = new Criteria(
-            'usuarios',
+            'users',
             $this->fields(), 
             $this->joins(),
             $this->filters(),
@@ -33,7 +33,7 @@ class IsUsersActive implements IUserSpecification
 
     private function fields()
     {
-        $fields[0] = new Field('uuid, nombre, usuario, cargo, direccion, telefono, mail, activo, rol, borrado, created_at, updated_at, deleted_at');
+        $fields[0] = new Field('uuid, name, user, position, address, phone, email, active');
         return $fields;
     }
     
@@ -44,7 +44,8 @@ class IsUsersActive implements IUserSpecification
 
     private function filters()
     {
-        $filters[0] = new Filter(null,'activo','=','"'.$this->isActive.'"');
+        $filters = new Filter(null,'activo','=','"'.$this->isActive.'"');
+        $filters = new Filter('AND', 'deleted_at','=','null');
         return null;
     }
 

@@ -52,6 +52,8 @@ class Spanish
             'phone' => 'Teléfono',
             'position' => 'Cargo',
             'administrator' => 'Administrador',
+            'active' => 'Activo',
+            'created_at' => 'Creado',
             '1000' => 'Usuario o contraseña invalidos', 
             '1001' => 'El usuario no existe'
         ];

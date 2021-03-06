@@ -4,10 +4,10 @@ use CodeIgniter\Model;
 
 class UserLoginModel extends Model
 {
-    protected $table = 'usuarios';
-    protected $primaryKey = 'usuario';
+    protected $table = 'users';
+    protected $primaryKey = 'user';
     protected $allowedFields = [
-        'usuario', 'name', 'pass'
+        'user', 'name', 'password'
     ];
     protected $returnType = 'array';
     protected $useTimestamps = true;
