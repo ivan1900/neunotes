@@ -33,7 +33,7 @@ class IsUsersActive implements IUserSpecification
 
     private function fields()
     {
-        $fields[0] = new Field('uuid, name, user, position, address, phone, email, active');
+        $fields[0] = new Field('id, name, user, position, address, phone, email, active');
         return $fields;
     }
     
@@ -44,8 +44,8 @@ class IsUsersActive implements IUserSpecification
 
     private function filters()
     {
-        $filters = new Filter(null,'activo','=','"'.$this->isActive.'"');
-        $filters = new Filter('AND', 'deleted_at','=','null');
+        //$filters[] = new Filter(null,'activo','=','"'.$this->isActive.'"');
+        $filters[] = new Filter(null, 'deleted_at','=','null');
         return null;
     }
 

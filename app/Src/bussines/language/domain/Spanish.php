@@ -54,6 +54,8 @@ class Spanish
             'administrator' => 'Administrador',
             'active' => 'Activo',
             'created_at' => 'Creado',
+            'yes' => 'Si',
+            'no' => 'No',
             '1000' => 'Usuario o contraseña invalidos', 
             '1001' => 'El usuario no existe'
         ];
