@@ -7,7 +7,7 @@ use App\Src\shared\domain\criteria\Join;
 use App\Src\shared\domain\criteria\Criteria;
 use App\Src\shared\infrastructure\codeigniter\CriteriaToSql;
 
-class IsUsersActive implements IUserSpecification
+class CriteriaUsersList implements IUserSpecification
 {
     public function __construct(
         private $isActive
@@ -27,6 +27,7 @@ class IsUsersActive implements IUserSpecification
         );  
 
         $criteriaToSql = new CriteriaToSql($criteria);
+        $tmp = $criteriaToSql->querySelect();
         return $criteriaToSql->querySelect();
 
     }
@@ -44,9 +45,9 @@ class IsUsersActive implements IUserSpecification
 
     private function filters()
     {
-        //$filters[] = new Filter(null,'activo','=','"'.$this->isActive.'"');
-        $filters[] = new Filter(null, 'deleted_at','=','null');
-        return null;
+        $filters[] = new Filter(null,'active','=','"'.$this->isActive.'"');
+        $filters[] = new Filter('AND', 'deleted_at',' IS ','NULL');
+        return $filters;
     }
 
     private function order()

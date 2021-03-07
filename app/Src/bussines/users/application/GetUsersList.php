@@ -4,7 +4,7 @@
 use App\Src\bussines\users\application\UserFinderList;
 use App\Src\bussines\users\infrastructure\UserRepositoryMySql;
 use App\Src\bussines\users\application\RequestUserList;
-use App\Src\bussines\users\infrastructure\IsUsersActive;
+use App\Src\bussines\users\infrastructure\CriteriaUsersList;
 
 class GetUsersList
 {
@@ -17,7 +17,7 @@ class GetUsersList
 
     public function __invoke()
     {
-        $isActive = new IsUsersActive($this->isActive);
+        $isActive = new CriteriaUsersList($this->isActive);
         $repository = new UserRepositoryMySql();
         $userFinder = new UserFinderList($repository);
         return $userFinder($isActive);
