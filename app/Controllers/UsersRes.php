@@ -6,6 +6,7 @@ use App\Src\bussines\users\application\GetUsersList;
 use App\Src\bussines\language\application\CurrentLanguage;
 use App\Src\bussines\language\application\LanguageVueTable2;
 use App\Src\bussines\users\application\RequestUserList;
+use DateTime;
 
 class UsersRes extends BaseController
 {
@@ -20,8 +21,14 @@ class UsersRes extends BaseController
         
         $request = new RequestUserList($isActive = true);
         $getUsers = new GetUsersList($request);
-        $response['users'] = (array) $getUsers();
+        $response['users'] = $getUsers();
         //print_r($response['users']);
+        foreach ($response['users'] as $item)
+        {
+            $date = new DateTime();
+            $date->setTimestamp($item['created_at']);
+            $item['created_at'] = $date->format('d-m-Y');
+        }
         foreach($response['users'][0] as $key => $item)
         {
             $header[] = $key;

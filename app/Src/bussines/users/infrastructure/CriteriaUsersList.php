@@ -27,14 +27,14 @@ class CriteriaUsersList implements IUserSpecification
         );  
 
         $criteriaToSql = new CriteriaToSql($criteria);
-        $tmp = $criteriaToSql->querySelect();
+        
         return $criteriaToSql->querySelect();
 
     }
 
     private function fields()
     {
-        $fields[0] = new Field('id, name, user, position, address, phone, email, active');
+        $fields[0] = new Field('id, name, user, position, address, phone, email, active, created_at');
         return $fields;
     }
     

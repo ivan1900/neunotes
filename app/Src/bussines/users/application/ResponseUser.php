@@ -18,6 +18,7 @@ final class ResponseUser
         public $active,
         public $address,
         public $position,
+        public $created_at
     )
     {}
     
