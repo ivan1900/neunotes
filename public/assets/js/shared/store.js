@@ -1,10 +1,10 @@
 const store = new Vuex.Store({
     state: {
         url: "",
-        endPoint: "",
+        endPoint: ""
     },
     mutations: {
-        
+
     },
     actions: {
 

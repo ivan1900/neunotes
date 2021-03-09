@@ -22,13 +22,15 @@ class UsersRes extends BaseController
         $request = new RequestUserList($isActive = true);
         $getUsers = new GetUsersList($request);
         $response['users'] = $getUsers();
-        //print_r($response['users']);
-        foreach ($response['users'] as $item)
-        {
-            $date = new DateTime();
-            $date->setTimestamp($item['created_at']);
-            $item['created_at'] = $date->format('d-m-Y');
+
+        if($this->session->language() == 'spanish'){
+            foreach($response['users'] as $key => $item){
+                $date = new DateTime();
+                $date->setTimestamp(strtotime($item->created_at));
+                $response['users'][$key]->created_at = $date->format('d-m-Y h:i');
+            }
         }
+        
         foreach($response['users'][0] as $key => $item)
         {
             $header[] = $key;
@@ -36,12 +38,11 @@ class UsersRes extends BaseController
         
         $response['header'] = $header;
         $response['heading'] = $this->translate($header);
-        $response['vueTable2Language'] = LanguageVueTable2::get($this->session->language());
-        
-        $response['boolean'] = [
+        $response['vueTable2Language'] = LanguageVueTable2::get($this->session->language());     
+       /* $response['boolean'] = [
             'yes' => $this->langMap['yes'],
             'no' => $this->langMap['no']
-        ];
+        ];*/
 
         echo json_encode($response);
     }
