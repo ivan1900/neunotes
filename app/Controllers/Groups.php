@@ -45,7 +45,7 @@ class Groups extends BaseController
         echo view('bar/topbar',$this->dataToTopbar);
         echo view('groups', $this->dataToView);
         echo view('bar/footbar');
-		echo view('footers/footer_users.php');
+		echo view('footers/footer_groups.php');
     }
 
 }
