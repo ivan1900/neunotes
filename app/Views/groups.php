@@ -14,7 +14,7 @@
                 </div>
                 <div class="ibox-content">
                     
-                <vuelist></vuelist>
+                <vueGroupsList></vueGroupsList>
                 </div>
             </div>
         </div>

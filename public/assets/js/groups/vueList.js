@@ -5,7 +5,6 @@ const vueList = ({
     },
     actions: {
         loadGroups: async function({commit, rootState}) {
-            console.log("wtf")
             axios
                 .get(rootState.url + rootState.endPoint)
                 .then((response) => {
@@ -15,11 +14,5 @@ const vueList = ({
                     console.log(error)
                 })
         }
-    },
-    template:/*html*/`
-        <div>
-            <p>{{groups}}</p>
-        <div>
-
-    `
+    }
 })

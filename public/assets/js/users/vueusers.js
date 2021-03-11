@@ -1,4 +1,3 @@
-//Vue.use(VueTables.ClientTable);
 var vm = new Vue({
   el: '#app',
   store: store,

@@ -10,6 +10,6 @@ const store = new Vuex.Store({
 
     },
     modules: {
-        groupsList: vueList
+       vueList: vueList
     }
 });

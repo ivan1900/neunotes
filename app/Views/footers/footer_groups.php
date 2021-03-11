@@ -16,6 +16,7 @@
 <script src="<?php echo base_url();?>/assets/js/groups/vueList.js"></script>
 <script src="<?php echo base_url();?>/assets/js/groups/store.js"></script>
 
+<script src="<?php echo base_url();?>/assets/js/groups/vueGroupsList.js"></script>
 <script src="<?php echo base_url();?>/assets/js/groups/vueGroups.js"></script>
 
 </body>
