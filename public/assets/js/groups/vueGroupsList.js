@@ -4,9 +4,9 @@ var vuegroupslist=({
     <div class="m-b-lg">
 
         <div class="input-group input-group-sm">
-            <input type="text" class="form-control" placeholder="Search issue by name..." >
+            <input type="text" class="form-control" placeholder="Filtrar..." >
             <div class="input-group-append">
-                <button class="btn btn-white" type="button">Search</button>
+                <button class="btn btn-white" type="button">Filtrar</button>
             </div>
         </div>
 
@@ -21,7 +21,7 @@ var vuegroupslist=({
                 <button type="button" class="btn btn-sm btn-white"> <i class="fa fa-cogs"></i> </button>
             </div>
 
-            <strong>Found 61 issues.</strong>
+            <strong>Registros {{list.length}}</strong>
 
 
 
@@ -32,28 +32,23 @@ var vuegroupslist=({
     <div class="table-responsive">
     <table class="table table-hover issue-tracker">
     <tbody>
-    <tr>
+    <tr v-for="item of list">
         <td>
-            <span class="label label-primary">Added</span>
+            <span v-if='item.menubackend == 1' class="label label-primary">Admin</span>
         </td>
         <td class="issue-info">
-            <a href="#">
-                ISSUE-23
+            <a v-bind:href="'group/'+item.uuid">
+                {{item.name}}
             </a>
-
-            <small>
-                This is issue with the coresponding note
-            </small>
         </td>
         <td>
-            Adrian Novak
+           
         </td>
         <td>
-            12.02.2015 10:00 am
+            Creado: {{item.created_at}}
         </td>
         <td>
-            <span class="pie">0.52,1.041</span>
-            2d
+            Modificado: {{item.updated_at}}
         </td>
         <td class="text-right">
             <button class="btn btn-white btn-xs"> Tag</button>
@@ -66,6 +61,10 @@ var vuegroupslist=({
     </div>
     </div>
     `,
+    computed:{
+        ...Vuex.mapState('vueList',['list'])
+    },
     methods: {
+
     },
 })
