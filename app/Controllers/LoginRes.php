@@ -21,7 +21,7 @@ class LoginRes extends BaseController
 		
 		//desde aquí eliminar para producción
 		$this->response->setHeader("Access-Control-Allow-Origin", "*");
-		//$this->response->setHeader("Access-Control-Allow-Methods","GET, POST, OPTIONS, PUT, DELETE");
+		$this->response->setHeader("Access-Control-Allow-Methods","GET, POST, OPTIONS, PUT, DELETE");
 		$this->response->setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 		
 		$this->response->setStatusCode(200);
