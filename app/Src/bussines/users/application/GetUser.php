@@ -1,24 +1,30 @@
 <?php namespace App\Src\bussines\users\application;
 
-use App\Src\bussines\users\domain\User;
-use App\Src\bussines\users\domain\UserNotExists;
-use App\Src\bussines\users\application\UserFinder;
+use App\Src\bussines\users\application\RequestUser;
 use App\Src\bussines\users\infrastructure\UserRepositoryMySql;
-use App\Src\bussines\session\application\SessionExceptionMessage;
-
+use App\Src\bussines\users\application\UserFinder;
+use App\Src\bussines\users\domain\UserNotExists;
 class GetUser
 {
-    public function __invoke(User $user): User
+    private $user;
+
+    public function __construct(RequestUser $request)
+    {
+        $this->user = $request->user();
+    }
+
+    public function execute()
     {
         $repository = new UserRepositoryMySql();
-        $userFinder = new UserFinder($repository);
-        try
-        {
-            return $userFinder($user->userName());
-        } catch (UserNotExists $e) {
-            SessionExceptionMessage::setExceptionMessage($e);
-            return  new User(0,"","");
+        $finder = new UserFinder($repository);
+        
+        try{
+            $response = $finder($this->user);
+        }catch(UserNotExists $exception){
+            throw new \Exception($exception->errorCode());
         }
+
+        return $response;
     }
 
 }

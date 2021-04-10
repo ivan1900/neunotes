@@ -1,27 +1,25 @@
-<?php
+<?php namespace App\Src\bussines\users\application;
 
-namespace App\Src\bussines\users\application;
-
+use App\Src\bussines\users\domain\UserNotExists;
 use App\Src\bussines\users\domain\IUserRepository;
-use App\Src\bussines\users\domain\UserLogin;
-
-final class UserFinder
+class UserFinder
 {
     private $repository;
 
-    public function __construct(IUserRepository $repository)
+    public function __construct(IUserRepository $UserRepository)
     {
-        $this->repository = $repository;
+        $this->repository = $UserRepository;
     }
 
-    public function __invoke($user): UserLogin
+    public function __invoke($user)
     {
-        $user = $this->repository->searchByUserName($user);
+        $response = $this->repository->searchByUserName($user);
         
-        if (null === $user){
-            throw new UserNotExists($name);
+        if (null === $response){
+            throw new UserNotExists($user);
         }
 
-        return $user;
+        return $response;
     }
+
 }
