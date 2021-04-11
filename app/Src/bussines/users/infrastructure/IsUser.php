@@ -1,10 +1,18 @@
 <?php namespace App\Src\bussines\users\infrastructure;
 
-class IsUser
+use App\Src\bussines\users\domain\IUserSpecification;
+class IsUser implements IUserSpecification
 {
-    public function isSatisfied($user)
+    private $user;
+    
+    public function __construct($user)
     {
-        $sql = ('SELECT * FROM users WHERE user='. $user);
+        $this->$user = $user;
+    }
+
+    public function isSatisfied(): string
+    {
+        $sql = ('SELECT * FROM users WHERE user='. $this->user);
         return $sql;
     }
 }
