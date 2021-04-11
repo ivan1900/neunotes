@@ -10,8 +10,8 @@ class Filters extends BaseConfig
 		'csrf'     => \CodeIgniter\Filters\CSRF::class,
 		'toolbar'  => \CodeIgniter\Filters\DebugToolbar::class,
 		'honeypot' => \CodeIgniter\Filters\Honeypot::class,
+		'oauthfilter' => \App\Filters\OauthFilter::class
 	];
-
 	// Always applied before every request
 	public $globals = [
 		'before' => [
@@ -33,6 +33,6 @@ class Filters extends BaseConfig
 	// that they should run on, like:
 	//    'isLoggedIn' => ['before' => ['account/*', 'profiles/*']],
 	public $filters = [
-		'oauthfilter' => ['before' => ['usersResf','usersResf/*']]
+		'oauthfilter' => ['before' => ['UsersResf','UsersResf/*']]
 	];
 }
