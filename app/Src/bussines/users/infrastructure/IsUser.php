@@ -7,7 +7,7 @@ class IsUser implements IUserSpecification
     
     public function __construct($user)
     {
-        $this->$user = $user;
+        $this->user = $user;
     }
 
     public function isSatisfied(): string

@@ -21,7 +21,7 @@ class GetUser
         $finder = new UserFinder($repository);
         
         try{
-            $response = $finder();
+            $response = $finder($isUser);
         }catch(UserNotExists $exception){
             throw new \Exception($exception->errorCode());
         }

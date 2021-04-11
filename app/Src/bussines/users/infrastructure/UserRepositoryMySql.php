@@ -51,7 +51,9 @@ final class UserRepositoryMySql extends CIRepository implements IUserRepository
 
     public function searchByUserName(IUserSpecification $specification)
     {
-        $sql = $specification->isSatisfied();       
+        $sql = $specification->isSatisfied();  
+        $object = $this->db->selectSqlArray($sql);
+        return $object;   
     /*    $arrayObj = $this->db->searchByName($this->table, 'usuario', $usuario);
         if (empty($arrayObj))
         {
