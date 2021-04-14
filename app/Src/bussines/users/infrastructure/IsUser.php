@@ -12,7 +12,7 @@ class IsUser implements IUserSpecification
 
     public function isSatisfied(): string
     {
-        $sql = ('SELECT * FROM users WHERE user='. $this->user);
+        $sql = ("SELECT * FROM users WHERE user='". $this->user ."'");
         return $sql;
     }
 }

@@ -19,7 +19,11 @@ class Filters extends BaseConfig
 			// 'csrf',
 		],
 		'after'  => [
-			'toolbar' => ['except' => ['UsersRes/*','GroupsRes/*']],
+			'toolbar' => ['except' => [
+				'UsersRes/*',
+				'GroupsRes/*',
+				'UsersResf/*'
+				]],
 			//'honeypot'
 		],
 	];
