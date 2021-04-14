@@ -32,7 +32,10 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Login::index');
-$routes->resource('UsersResf');
+//$routes->resource('usersresf');
+//$routes->get('usersresf/(:segment)',      'UsersResf::show/$1');
+//$routes->resource('users', ['controller' =>'App\UsersResf']);
+//$routes->get('users', 'App\UsersResf::show/$1');
 /**
  * --------------------------------------------------------------------
  * Additional Routing

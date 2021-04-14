@@ -18,15 +18,15 @@ class OauthFilter implements FilterInterface
     $oauth = new Oauth();
     $request = Request::createFromGlobals();
     $response = new Response();
-/*
+
+    //this remove in production
     if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-      header("HTTP/1.1 200 OK");
+      header("HTTP/1.1 204 OK");
       return $response;
-    } */
+    } //
 
     if (!$oauth->server->verifyResourceRequest($request)) {
       $oauth->server->getResponse()->send();
-      //$this->response->setHeader("Access-Control-Allow-Credentials", "true");
       die();
     }
   }
