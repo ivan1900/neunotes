@@ -53,14 +53,8 @@ final class UserRepositoryMySql extends CIRepository implements IUserRepository
     {
         $sql = $specification->isSatisfied();  
         $object = $this->db->selectSqlArray($sql);
-        return $object;   
-    /*    $arrayObj = $this->db->searchByName($this->table, 'usuario', $usuario);
-        if (empty($arrayObj))
-        {
-            return null;
-        }
-        return new User($arrayObj->idusuario,$arrayObj->usuario,$arrayObj->pass,$arrayObj->rol);
-        */
+        $response = ResponseUser::new(...$object[0]);
+        return $response;   
     }
 
 }
