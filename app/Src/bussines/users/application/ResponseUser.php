@@ -57,4 +57,9 @@ final class ResponseUser
     {
         return $this->position;
     }
+
+    public function language()
+    {
+        return $this->language;
+    }
 }

@@ -2,14 +2,14 @@
 
 class ResponseMenu
 {
-    private $id;
-    private $item;
-    private $level;
-    private $route;
-    private $fa;
-    private $parent;
-    private $isfront;
-    private $isbackend;
+    public $id;
+    public $item;
+    public $level;
+    public $route;
+    public $fa;
+    public $parent;
+    public $isfront;
+    public $isbackend;
 
     public function __construct($values)
     {

@@ -51,7 +51,13 @@ class UsersResf extends ResourceController
     {
         $request = new RequestUser($user);
         $getUser = new GetUser($request);
-        return $this->respond($getUser->execute());
+        $user = $getUser->execute();
+        $data= [
+            "name" => $user->name(),
+            "language" => $user->language(),
+            "position" => $user->position()
+        ];
+        return $this->respond($data);
     }
 
     private function translate($header)
