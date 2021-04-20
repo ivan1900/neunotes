@@ -22,7 +22,8 @@ class Filters extends BaseConfig
 			'toolbar' => ['except' => [
 				'UsersRes/*',
 				'GroupsRes/*',
-				'UsersResf/*'
+				'UsersResf/*',
+				'MenuResf/*'
 				]],
 			//'honeypot'
 		],
@@ -37,6 +38,6 @@ class Filters extends BaseConfig
 	// that they should run on, like:
 	//    'isLoggedIn' => ['before' => ['account/*', 'profiles/*']],
 	public $filters = [
-		'oauthfilter' => ['before' => ['UsersResf','UsersResf/*']]
+		'oauthfilter' => ['before' => ['UsersResf','UsersResf/*','MenuResf','MenuResf/*']]
 	];
 }

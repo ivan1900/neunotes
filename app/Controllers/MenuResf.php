@@ -19,7 +19,7 @@ class MenuResf extends ResourceController
         $request = new RequestUser($user);
         $getUser = new GetUser($request);
         $user = $getUser->execute();
-        $$this->language = $user->language();
+        $this->language = $user->language();
         $userUuid = $user->uuid();
         
 
@@ -44,7 +44,7 @@ class MenuResf extends ResourceController
         $langMap = CurrentLanguage::get($this->language);
         foreach ($items as &$item)
         {
-            $item['item'] = $langMap[$item['item']];
+            $item->item = $langMap[$item->item];
         }
         return $items;
     }
