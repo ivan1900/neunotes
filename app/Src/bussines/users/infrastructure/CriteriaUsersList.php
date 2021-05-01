@@ -10,7 +10,9 @@ use App\Src\shared\infrastructure\codeigniter\CriteriaToSql;
 class CriteriaUsersList implements IUserSpecification
 {
     public function __construct(
-        private $isActive
+        private $isActive,
+        private $from,
+        private $to
         )
     {}
 

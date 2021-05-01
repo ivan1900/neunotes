@@ -3,27 +3,27 @@
 use CodeIgniter\RESTful\ResourceController;
 use App\Src\bussines\users\application\GetUsersList;
 use App\Src\bussines\language\application\CurrentLanguage;
-use App\Src\bussines\language\application\LanguageVueTable2;
+use App\Src\bussines\language\application\LanguageTable;
 use App\Src\bussines\users\application\RequestUserList;
 use App\Src\bussines\users\application\GetUser;
 use App\Src\bussines\users\application\RequestUser;
+use App\Src\bussines\counters\application\ActiveUsersCounter;
 use DateTime;
 
 class UsersResf extends ResourceController
 {
     protected $format = 'json';
     private $langMap;
+    private $language;
 
-    public function index(){
-        //obtener lenguaje desde el usuario, opción1 que lo haga el backend opción 2 guardarlo en el front y se indique en cada petición
+    public function list($user, $from, $to){
+        $this->language = $this->language($user);
 
-        $this->langMap = CurrentLanguage::get($this->session->language());
-        
-        $request = new RequestUserList($isActive = true);
+        $request = new RequestUserList($isActive = true, $from, $to);
         $getUsers = new GetUsersList($request);
         $response['users'] = $getUsers();
-
-        if($this->session->language() == 'spanish'){
+        
+        if($this->language == 'spanish'){
             foreach($response['users'] as $key => $item){
                 $date = new DateTime();
                 $date->setTimestamp(strtotime($item->created_at));
@@ -38,15 +38,13 @@ class UsersResf extends ResourceController
         
         $response['header'] = $header;
         $response['heading'] = $this->translate($header);
-        $response['vueTable2Language'] = LanguageVueTable2::get($this->session->language());     
-       /* $response['boolean'] = [
-            'yes' => $this->langMap['yes'],
-            'no' => $this->langMap['no']
-        ];*/
+        //$response['vueTable'] = LanguageTable::get($this->session->language());     
+        $activeUsersCounter = new ActiveUsersCounter();
+        $response['activeUsersCounter'] = $activeUsersCounter();
 
-        echo json_encode($response);
+        return $this->respond($response);
     }
-
+    
     public function show($user = null)
     {
         $request = new RequestUser($user);
@@ -60,8 +58,17 @@ class UsersResf extends ResourceController
         return $this->respond($data);
     }
 
+    private function language($user)
+    {
+        $request = new RequestUser($user);
+        $getUser = new GetUser($request);
+        $user = $getUser->execute();
+        return $user->language();
+    }
+    
     private function translate($header)
     {
+        $this->langMap = CurrentLanguage::get($this->language);
         foreach($header as $item)
         {
             $response[$item] = $this->langMap[$item];

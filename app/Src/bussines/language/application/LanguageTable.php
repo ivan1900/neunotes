@@ -2,7 +2,7 @@
 
 use App\Src\bussines\language\application\CallLanguage;
 
-class LanguageVueTable2
+class LanguageTable
 {
     public static function get($language):array
     {

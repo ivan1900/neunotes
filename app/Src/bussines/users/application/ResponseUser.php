@@ -11,7 +11,7 @@ final class ResponseUser
 
     public function __construct(
         public $id,
-        public $uuid,
+        public $uuid = null,
         public $name,
         public $user,
         public $phone,

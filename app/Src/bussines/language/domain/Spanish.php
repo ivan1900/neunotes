@@ -25,6 +25,7 @@ class Spanish
             'grupo' => 'Grupo',
             'home' => 'Home',
             'id' => 'Id',
+            'language' => 'Idioma',
             'list' => 'Lista',
             'lista' => 'Lista',
             'login' => 'login',
