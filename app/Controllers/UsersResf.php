@@ -3,11 +3,12 @@
 use CodeIgniter\RESTful\ResourceController;
 use App\Src\bussines\users\application\GetUsersList;
 use App\Src\bussines\language\application\CurrentLanguage;
-use App\Src\bussines\language\application\LanguageTable;
+//use App\Src\bussines\language\application\LanguageTable;
 use App\Src\bussines\users\application\RequestUserList;
 use App\Src\bussines\users\application\GetUser;
 use App\Src\bussines\users\application\RequestUser;
 use App\Src\bussines\counters\application\ActiveUsersCounter;
+use App\Src\bussines\readmodel\languages\GetLanguagesList;
 use DateTime;
 
 class UsersResf extends ResourceController
@@ -55,6 +56,13 @@ class UsersResf extends ResourceController
             "language" => $user->language(),
             "position" => $user->position()
         ];
+        return $this->respond($data);
+    }
+
+    public function userForm()
+    {
+        $languages = new GetLanguagesList();
+        $data['languages'] = $languages->getData();
         return $this->respond($data);
     }
 
