@@ -2,7 +2,7 @@
 
 use App\Src\bussines\language\domain\Spanish;
 use App\Src\bussines\language\domain\SpanishErrorCodes;
-use App\Src\bussines\language\domain\SpanishVueTable2;
+use App\Src\bussines\language\domain\SpanishForms;
 use App\Src\bussines\language\domain\English;
 
 class CallLanguage
@@ -19,9 +19,9 @@ class CallLanguage
         return $langMap->getMap();
     }
 
-    public function spanishVueTable2():array
+    public function spanishForms():array
     {
-        $langMap = new spanishVueTable2();
+        $langMap = new spanishForms();
         return $langMap->getMap();
     }
 

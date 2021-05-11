@@ -2,12 +2,12 @@
 
 use App\Src\bussines\language\application\CallLanguage;
 
-class LanguageTable
+class LanguageForms
 {
     public static function get($language):array
     {
         $callLang = new CallLanguage();
-        $language = $language . "VueTable2";
+        $language = $language . "Forms";
         return $callLang->$language();
     }
 }

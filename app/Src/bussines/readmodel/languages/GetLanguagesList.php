@@ -10,12 +10,18 @@ class GetLanguagesList extends CIRepository implements IGetLanguagesList
     {
         $sql = 'select * from languages';
         $result = $this->db->selectSqlArray($sql);
-        
+        /*
         $list = array_map(static function ($row){
             $listRow = new ListLanguages();
             $listRow->id = $row['id'];
             $listRow->value = $row['value'];
         }, $result);
+        */
+
+        foreach($result as $item)
+        {
+            $list[] = ListLanguages::new(...$item);
+        }
 
         return $list;
     }

@@ -9,16 +9,16 @@ use App\Src\bussines\users\application\GetUser;
 use App\Src\bussines\users\application\RequestUser;
 use App\Src\bussines\counters\application\ActiveUsersCounter;
 use App\Src\bussines\readmodel\languages\GetLanguagesList;
+use App\Src\bussines\language\application\LanguageForms;
 use DateTime;
 
 class UsersResf extends ResourceController
 {
     protected $format = 'json';
-    private $langMap;
     private $language;
 
-    public function list($user, $from, $to){
-        $this->language = $this->language($user);
+    public function list($language, $from, $to){
+        $this->language = $language;
 
         $request = new RequestUserList($isActive = true, $from, $to);
         $getUsers = new GetUsersList($request);
@@ -59,27 +59,21 @@ class UsersResf extends ResourceController
         return $this->respond($data);
     }
 
-    public function userForm()
+    public function userForm($language)
     {
         $languages = new GetLanguagesList();
         $data['languages'] = $languages->getData();
+        $data['langMap'] = LanguageForms::get($language);
+
         return $this->respond($data);
     }
-
-    private function language($user)
+   
+    private function translate($content)
     {
-        $request = new RequestUser($user);
-        $getUser = new GetUser($request);
-        $user = $getUser->execute();
-        return $user->language();
-    }
-    
-    private function translate($header)
-    {
-        $this->langMap = CurrentLanguage::get($this->language);
-        foreach($header as $item)
+        $langMap = CurrentLanguage::get($this->language);
+        foreach($content as $item)
         {
-            $response[$item] = $this->langMap[$item];
+            $response[$item] = $langMap[$item];
         }       
         return($response);
     }
