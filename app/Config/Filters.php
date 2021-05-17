@@ -39,5 +39,7 @@ class Filters extends BaseConfig
 	//    'isLoggedIn' => ['before' => ['account/*', 'profiles/*']],
 	public $filters = [
 		'oauthfilter' => ['before' => ['UsersResf','UsersResf/*','MenuResf','MenuResf/*']]
+		//'oauthfilter' => ['before' => ['MenuResf','MenuResf/*']]
+
 	];
 }

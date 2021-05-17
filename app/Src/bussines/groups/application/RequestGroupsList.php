@@ -3,7 +3,7 @@
 final class RequestGroupsList
 {
     public function __construct(
-        private $isActive
+        private $isActive = true
     ){}
 
     public function isActive()

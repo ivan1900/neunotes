@@ -10,6 +10,8 @@ use App\Src\bussines\users\application\RequestUser;
 use App\Src\bussines\counters\application\ActiveUsersCounter;
 use App\Src\bussines\readmodel\languages\GetLanguagesList;
 use App\Src\bussines\language\application\LanguageForms;
+use App\Src\bussines\groups\application\GetGroupsList;
+use App\Src\bussines\groups\application\RequestGroupsList;
 use DateTime;
 
 class UsersResf extends ResourceController
@@ -39,7 +41,6 @@ class UsersResf extends ResourceController
         
         $response['header'] = $header;
         $response['heading'] = $this->translate($header);
-        //$response['vueTable'] = LanguageTable::get($this->session->language());     
         $activeUsersCounter = new ActiveUsersCounter();
         $response['activeUsersCounter'] = $activeUsersCounter();
 
@@ -63,9 +64,27 @@ class UsersResf extends ResourceController
     {
         $languages = new GetLanguagesList();
         $data['languages'] = $languages->getData();
+        $requestGroups = new RequestGroupsList();
+        $rols = new GetGroupsList($requestGroups);
+/*
+Retornar un array con el uuid y el nombre en el idioma elegido
+Revisar todo el uuid de grupos
+El front devolvera el uuid del grupo para el rol
+*/
+
+        $data['roles'] = $rols();
         $data['langMap'] = LanguageForms::get($language);
 
         return $this->respond($data);
+    }
+
+    public function create()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'OPTIONS') {
+            $tmp = $this->request->getVar('name');
+            $a = $tmp;
+            
+        } 
     }
    
     private function translate($content)

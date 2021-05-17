@@ -18,7 +18,8 @@ class SpanishForms
             'password' => "Contraseña",
             'send' => "Enviar",
             'clean' => "Limpiar",
-            'newUser' => "Nuevo usuario"
+            'newUser' => "Nuevo usuario",
+            'role' => "Rol"
         ];
     }
 
