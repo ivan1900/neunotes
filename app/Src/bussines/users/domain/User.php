@@ -10,7 +10,8 @@ use App\Src\bussines\users\domain\UserPhone;
 use App\Src\bussines\users\domain\UserAddress;
 use App\Src\bussines\users\domain\UserEmail;
 use App\Src\bussines\users\domain\UserPosition;
-
+use App\Src\bussines\users\domain\UserRole;
+use App\Src\bussines\users\domain\UserLanguage;
 use App\Src\shared\domain\aggregate\AggregateRoot;
 
 final class User extends AggregateRoot
@@ -23,12 +24,43 @@ final class User extends AggregateRoot
         UserPhone $phone,
         UserEmail $email,
         UserAddress $address,
-        UserPosition $position)
+        UserPosition $position,
+        UserRole $role,
+        UserLanguage $language)
     {}
 
     public static function fromValues(object $values):self
     {
-        return new self($values->uuid, $values->name, $values->user, $values->password, $values->phone, $values->email, $values->address, $values->position);
+        return new self(
+            $values->uuid, 
+            $values->name, 
+            $values->user, 
+            $values->password, 
+            $values->phone, 
+            $values->email, 
+            $values->address, 
+            $values->position,
+            $values->role,
+            $values->language
+        );
+    }
+
+    public static function create(
+        UserUuid $uuid,
+        UserName $name,
+        UserNickName $user,
+        UserPassword $password,
+        UserPhone $phone,
+        UserEmail $email,
+        UserAddress $address,
+        UserPosition $position,
+        UserRole $role,
+        UserLanguage $language
+    ):User
+    {
+        $user = new self($uuid, $name, $user, $password, $phone, $email, $address, $position, $role, $language);
+
+        return $user;
     }
 
     public function uuid()

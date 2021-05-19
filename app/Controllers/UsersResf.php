@@ -12,6 +12,7 @@ use App\Src\bussines\readmodel\languages\GetLanguagesList;
 use App\Src\bussines\language\application\LanguageForms;
 use App\Src\bussines\groups\application\GetGroupsList;
 use App\Src\bussines\groups\application\RequestGroupsList;
+use App\Src\bussines\users\application\RequestCreateUser;
 use DateTime;
 
 class UsersResf extends ResourceController
@@ -64,15 +65,16 @@ class UsersResf extends ResourceController
     {
         $languages = new GetLanguagesList();
         $data['languages'] = $languages->getData();
-        $requestGroups = new RequestGroupsList();
-        $rols = new GetGroupsList($requestGroups);
-/*
-Retornar un array con el uuid y el nombre en el idioma elegido
-Revisar todo el uuid de grupos
-El front devolvera el uuid del grupo para el rol
-*/
 
-        $data['roles'] = $rols();
+        $requestGroups = new RequestGroupsList();
+        $roles = new GetGroupsList($requestGroups);
+        $langMap = CurrentLanguage::get($language);
+        $rolList = $roles();
+        foreach($rolList as $key => $item){
+            $rolList[$key]->name = $langMap[$item->name];
+        }
+
+        $data['roles'] = $rolList;
         $data['langMap'] = LanguageForms::get($language);
 
         return $this->respond($data);
@@ -81,8 +83,19 @@ El front devolvera el uuid del grupo para el rol
     public function create()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'OPTIONS') {
-            $tmp = $this->request->getVar('name');
-            $a = $tmp;
+            $requestCreateUser = new RequestCreateUser(
+                user: $_POST['user'],
+                name: $_POST['name'],
+                password: $_POST['password'],
+                position: $_POST['position'],
+                address: $_POST['address'],
+                phone: $_POST['phone'],
+                email: $_POST['email'],
+                active: $_POST['active'],
+                language: $_POST['language'],
+                role: $_POST['role']
+            );
+            
             
         } 
     }
