@@ -2,6 +2,7 @@
 
 namespace App\Src\bussines\users\domain;
 
+use App\Src\bussines\users\domain\login\UserCreated as LoginUserCreated;
 use App\Src\bussines\users\domain\UserUuid;
 use App\Src\bussines\users\domain\UserName;
 use App\Src\bussines\users\domain\UserNickName;
@@ -12,7 +13,9 @@ use App\Src\bussines\users\domain\UserEmail;
 use App\Src\bussines\users\domain\UserPosition;
 use App\Src\bussines\users\domain\UserRole;
 use App\Src\bussines\users\domain\UserLanguage;
+use App\Src\bussines\users\domain\UserActive;
 use App\Src\shared\domain\aggregate\AggregateRoot;
+use App\Src\bussines\users\domain\UserCreated;
 
 final class User extends AggregateRoot
 {
@@ -26,7 +29,8 @@ final class User extends AggregateRoot
         UserAddress $address,
         UserPosition $position,
         UserRole $role,
-        UserLanguage $language)
+        UserLanguage $language,
+        UserActive $active)
     {}
 
     public static function fromValues(object $values):self
@@ -41,7 +45,8 @@ final class User extends AggregateRoot
             $values->address, 
             $values->position,
             $values->role,
-            $values->language
+            $values->language,
+            $values->active
         );
     }
 
@@ -55,10 +60,16 @@ final class User extends AggregateRoot
         UserAddress $address,
         UserPosition $position,
         UserRole $role,
-        UserLanguage $language
+        UserLanguage $language,
+        UserActive $active
     ):User
     {
-        $user = new self($uuid, $name, $user, $password, $phone, $email, $address, $position, $role, $language);
+        $user = new self($uuid, $name, $user, $password, $phone, $email, $address, $position, $role, $language, $active);
+
+        $user->record(new LoginUserCreated(
+            $name->value(),
+            $uuid->value()
+        ));
 
         return $user;
     }
@@ -71,6 +82,11 @@ final class User extends AggregateRoot
     public function name()
     {
         return $this->name;
+    }
+
+    public function user()
+    {
+        return $this->user;
     }
 
     public function password()
@@ -96,5 +112,20 @@ final class User extends AggregateRoot
     public function position()
     {
         return $this->position;
+    }
+
+    public function role()
+    {
+        return $this->role;
+    }
+
+    public function language()
+    {
+        return $this->language;
+    }
+
+    public function active()
+    {
+        return $this->active;
     }
 }

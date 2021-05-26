@@ -2,7 +2,7 @@
 
 interface IUserRepository
 {
-    public function save($user);
+    public function save(User $user);
 
     public function saveAll($users);
 

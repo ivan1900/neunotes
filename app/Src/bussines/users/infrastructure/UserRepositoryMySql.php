@@ -34,9 +34,22 @@ final class UserRepositoryMySql extends CIRepository implements IUserRepository
         return $responseDTO;
     }
 
-    public function save($user)
+    public function save(User $user)
     {
-
+        $data = [
+            'uuid' => $user->uuid()->value(),
+            'name' => $user->name()->value(),
+            'user' => $user->user()->value(),
+            'password' => $user->password()->value(),
+            'phone' => $user->phone()->value(),
+            'email' => $user->email()->value(),
+            'address' => $user->address()->value(),
+            'position' => $user->position()->value(),
+            'role' => $user->role()->value(),
+            'language' => $user->language()->value(),
+            'active' => $user->active()->value()
+        ];   
+        $this->db->insertData('user', $data);
     }
 
     public function saveAll($users)
