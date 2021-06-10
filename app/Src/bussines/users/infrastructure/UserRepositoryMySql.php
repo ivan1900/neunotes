@@ -47,7 +47,9 @@ final class UserRepositoryMySql extends CIRepository implements IUserRepository
             'position' => $user->position()->value(),
             'role' => $user->role()->value(),
             'language' => $user->language()->value(),
-            'active' => $user->active()->value()
+            'active' => $user->active()->value(),
+            //  'created_at' => 
+            //falta crear fecha creación
         ];   
         $this->db->insertData('user', $data);
     }

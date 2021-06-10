@@ -3,7 +3,8 @@
 use \App\Libraries\Oauth;
 use \OAuth2\Request;
 use CodeIgniter\API\ResponseTrait;
-
+use \App\Src\shared\infrastructure\EventDispatcher;
+use App\Src\bussines\users\domain\login\LoginWasOccurred;
 class LoginRes extends BaseController
 {
 	use ResponseTrait;
@@ -18,6 +19,13 @@ class LoginRes extends BaseController
 		if($code == 401){
 			$body = '{"error":"invalid_grant","error_description":"Usuario o contraseña invalidos"}';
 		}
+		if(isset($_POST['username'])){
+			$events[] = new LoginWasOccurred($_POST['username'],true,'');
+
+			$dispatcher = new EventDispatcher();
+			$dispatcher->notify($events);
+		}
+	
 		
 		//desde aquí eliminar para producción
 		$this->response->setHeader("Access-Control-Allow-Origin", "*");

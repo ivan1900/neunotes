@@ -13,7 +13,8 @@ class LoginWasOccurred implements DomainEvent, PublishableDomainEvent
     public function __construct($userName, $wasLogged, $userUuid)
     {
         $this->userName = $userName;
-        $this->occurredOn = (new \DateTimeImmutable())->getTimestamp();
+        $date = new \DateTime();
+        $this->occurredOn = $date->format('Y-m-d H:i:s');
         $this->wasLogged = $wasLogged;
         $this->userUuid = $userUuid;
     }
