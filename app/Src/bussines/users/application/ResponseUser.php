@@ -11,7 +11,6 @@ final class ResponseUser
 
     public function __construct(
         public $id,
-        public $uuid = null,
         public $name,
         public $user,
         public $phone,
@@ -19,8 +18,9 @@ final class ResponseUser
         public $active,
         public $address,
         public $position,
-        public $language = null,
-        public $created_at
+        public $created_at,
+        public $uuid = null,
+        public $language = null
     )
     {}
     
