@@ -1,7 +1,5 @@
 <?php namespace App\Src\bussines\users\application;
 
-use Exception;
-
 final class ResponseUser
 {
     public static function new(...$args)
@@ -19,8 +17,9 @@ final class ResponseUser
         public $address,
         public $position,
         public $created_at,
+        public $timezone = null,
         public $uuid = null,
-        public $language = null
+        public $language = null,
     )
     {}
     
@@ -62,5 +61,10 @@ final class ResponseUser
     public function language()
     {
         return $this->language;
+    }
+
+    public function timezone()
+    {
+        return $this->timezone;
     }
 }

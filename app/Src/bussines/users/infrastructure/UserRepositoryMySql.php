@@ -7,7 +7,7 @@ use App\Src\bussines\users\domain\IUserRepository;
 use App\Src\bussines\users\domain\IUserSpecification;
 use App\Src\shared\infrastructure\codeigniter\CIRepository;
 use App\Src\bussines\users\application\ResponseUser;
-
+use App\Src\bussines\users\application\ResponseUserList;
 
 final class UserRepositoryMySql extends CIRepository implements IUserRepository
 {
@@ -28,7 +28,7 @@ final class UserRepositoryMySql extends CIRepository implements IUserRepository
 
         foreach($arrayObj as $item)
         {
-            $responseDTO[] = ResponseUser::new(...$item);        
+            $responseDTO[] = ResponseUserList::new(...$item);        
         }
 
         return $responseDTO;
@@ -49,7 +49,7 @@ final class UserRepositoryMySql extends CIRepository implements IUserRepository
             'language' => $user->language()->value(),
             'active' => $user->active()->value(),
             //  'created_at' => 
-            //falta crear fecha creación
+            //falta crear fecha creación y zona horaria
         ];   
         $this->db->insertData('user', $data);
     }

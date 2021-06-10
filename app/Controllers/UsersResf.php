@@ -14,13 +14,14 @@ use App\Src\bussines\groups\application\GetGroupsList;
 use App\Src\bussines\groups\application\RequestGroupsList;
 use App\Src\bussines\users\application\RequestCreateUser;
 use DateTime;
+use DateTimeZone;
 
 class UsersResf extends ResourceController
 {
     protected $format = 'json';
     private $language;
 
-    public function list($language, $from, $to){
+    public function list($language, $timezone, $from, $to){
         $this->language = $language;
 
         $request = new RequestUserList($isActive = true, $from, $to);
@@ -29,9 +30,9 @@ class UsersResf extends ResourceController
         
         if($this->language == 'spanish'){
             foreach($response['users'] as $key => $item){
-                $date = new DateTime();
-                $date->setTimestamp(strtotime($item->created_at));
-                $response['users'][$key]->created_at = $date->format('d-m-Y h:i');
+                $date = new DateTime($item->created_at, new DateTimeZone('UTC'));
+                $date->setTimezone(new DateTimeZone(str_replace('_','/',$timezone)));
+                $response['users'][$key]->created_at = $date->format('d-m-Y H:i');
             }
         }
         
@@ -56,7 +57,8 @@ class UsersResf extends ResourceController
         $data= [
             "name" => $user->name(),
             "language" => $user->language(),
-            "position" => $user->position()
+            "position" => $user->position(),
+            "timezone" => $user->timezone()
         ];
         return $this->respond($data);
     }
@@ -76,6 +78,12 @@ class UsersResf extends ResourceController
 
         $data['roles'] = $rolList;
         $data['langMap'] = LanguageForms::get($language);
+
+        $timeZones = DateTimeZone::listIdentifiers();
+
+        $cities = array_unique($timeZones);
+        ksort($cities);
+        $data['timeZones'] = $cities;
 
         return $this->respond($data);
     }
