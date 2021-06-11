@@ -12,7 +12,8 @@ class RequestCreateUser
         public $email,
         public $active=true,
         public $language,
-        public $role
+        public $role,
+        public $timezone
     )
     {}
 

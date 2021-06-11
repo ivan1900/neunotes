@@ -48,6 +48,7 @@ final class UserRepositoryMySql extends CIRepository implements IUserRepository
             'role' => $user->role()->value(),
             'language' => $user->language()->value(),
             'active' => $user->active()->value(),
+            'timezone' => $user->timezone()->value()
             //  'created_at' => 
             //falta crear fecha creación y zona horaria
         ];   

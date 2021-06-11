@@ -14,7 +14,9 @@ use App\Src\bussines\users\domain\UserPosition;
 use App\Src\bussines\users\domain\UserRole;
 use App\Src\bussines\users\domain\UserLanguage;
 use App\Src\bussines\users\domain\UserActive;
+use App\Src\bussines\users\domain\UserTimezone;
 use App\Src\shared\domain\aggregate\AggregateRoot;
+
 use App\Src\bussines\users\domain\UserCreated;
 
 final class User extends AggregateRoot
@@ -30,7 +32,8 @@ final class User extends AggregateRoot
         UserPosition $position,
         UserRole $role,
         UserLanguage $language,
-        UserActive $active)
+        UserActive $active,
+        UserTimezone $timezone)
     {}
 
     public static function fromValues(object $values):self
@@ -46,7 +49,8 @@ final class User extends AggregateRoot
             $values->position,
             $values->role,
             $values->language,
-            $values->active
+            $values->active,
+            $values->timezone
         );
     }
 
@@ -61,10 +65,11 @@ final class User extends AggregateRoot
         UserPosition $position,
         UserRole $role,
         UserLanguage $language,
-        UserActive $active
+        UserActive $active,
+        UserTimezone $timezone
     ):User
     {
-        $user = new self($uuid, $name, $user, $password, $phone, $email, $address, $position, $role, $language, $active);
+        $user = new self($uuid, $name, $user, $password, $phone, $email, $address, $position, $role, $language, $active, $timezone);
 
         $user->record(new LoginUserCreated(
             $name->value(),
@@ -125,6 +130,11 @@ final class User extends AggregateRoot
     }
 
     public function active()
+    {
+        return $this->active;
+    }
+
+    public function timezone()
     {
         return $this->active;
     }

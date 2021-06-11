@@ -101,7 +101,8 @@ class UsersResf extends ResourceController
                 email: $_POST['email'],
                 active: $_POST['active'],
                 language: $_POST['language'],
-                role: $_POST['role']
+                role: $_POST['role'],
+                timezone: $_POST['timezone']
             );
             
             
