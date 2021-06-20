@@ -109,7 +109,7 @@ class UsersResf extends ResourceController
             $langMap = CurrentLanguage::get($_POST['langDisplay']);
             try{
                 $createUser->create($requestCreateUser);
-                $this->respond($langMap['messageSuccesSave'],204);
+                $this->respond($langMap['messageSuccesSave'],200);
             }catch(\Exception $e){
                 //$this->fail($langMap['messageFailSave'],400,$langMap['messageFailSave']);
                 header("HTTP/1.1 500 Bad request");
