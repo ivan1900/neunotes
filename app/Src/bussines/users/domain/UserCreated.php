@@ -1,7 +1,8 @@
-<?php namespace App\Src\bussines\users\domain\login;
+<?php namespace App\Src\bussines\users\domain;
 
 use App\Src\shared\domain\events\DomainEvent;
 use App\Src\shared\domain\events\PublishableDomainEvent;
+use DateTimeZone;
 
 class UserCreated implements DomainEvent, PublishableDomainEvent
 {
@@ -12,7 +13,7 @@ class UserCreated implements DomainEvent, PublishableDomainEvent
     public function __construct($userName, $userUuid)
     {
         $this->userName = $userName;
-        $this->occurredOn = (new \DateTimeImmutable())->getTimestamp();
+        $this->occurredOn = new \DateTimeImmutable("now", new DateTimeZone('UTC'));
         $this->userUuid = $userUuid;
     }
 

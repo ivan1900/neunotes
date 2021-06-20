@@ -14,7 +14,7 @@ use App\Src\bussines\users\domain\UserEmail;
 use App\Src\bussines\users\domain\UserPosition;
 use App\Src\bussines\users\domain\UserRole;
 use App\Src\bussines\users\domain\UserLanguage;
-use App\Src\bussines\users\domain\Usertimezone;
+use App\Src\bussines\users\domain\UserTimezone;
 use App\Src\shared\infrastructure\EventDispatcher;
 class CreateUser
 {
@@ -39,7 +39,7 @@ class CreateUser
         $role = new UserRole($request->role);
         $language = new UserLanguage($request->language);
         $active = new UserActive($request->active);
-        $timezone = new Usertimezone($request->timezone);
+        $timezone = new UserTimezone($request->timezone);
 
         // falta añadir active aquí y en el dominio
 

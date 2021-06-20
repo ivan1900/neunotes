@@ -33,6 +33,8 @@ class Spanish
             'managments' => 'Gestiones',
             'menufrontend' => 'Menu Usuario',
             'menubackend' => 'Menu Adminstrador',
+            'messageSuccesSave' => 'Registro guardado',
+            'messageFailSave' => 'No se ha podido guardar, revise los datos',
             'name' => 'Nombre',
             'no' => 'No',
             'nuevo'=> 'Nuevo',

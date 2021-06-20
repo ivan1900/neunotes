@@ -13,6 +13,7 @@ use App\Src\bussines\language\application\LanguageForms;
 use App\Src\bussines\groups\application\GetGroupsList;
 use App\Src\bussines\groups\application\RequestGroupsList;
 use App\Src\bussines\users\application\RequestCreateUser;
+use App\Src\bussines\users\application\CreateUser;
 use DateTime;
 use DateTimeZone;
 
@@ -104,7 +105,17 @@ class UsersResf extends ResourceController
                 role: $_POST['role'],
                 timezone: $_POST['timezone']
             );
-            
+            $createUser = new CreateUser();
+            $langMap = CurrentLanguage::get($_POST['langDisplay']);
+            try{
+                $createUser->create($requestCreateUser);
+                $this->respond($langMap['messageSuccesSave'],204);
+            }catch(\Exception $e){
+                //$this->fail($langMap['messageFailSave'],400,$langMap['messageFailSave']);
+                header("HTTP/1.1 500 Bad request");
+                http_response_code(500);
+                echo json_encode($langMap['messageFailSave']);
+            }
             
         } 
     }

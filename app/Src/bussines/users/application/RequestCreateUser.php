@@ -10,10 +10,10 @@ class RequestCreateUser
         public $address,
         public $phone,
         public $email,
-        public $active=true,
         public $language,
         public $role,
-        public $timezone
+        public $timezone,
+        public $active=true
     )
     {}
 

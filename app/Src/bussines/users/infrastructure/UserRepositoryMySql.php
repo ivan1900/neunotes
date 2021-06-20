@@ -8,6 +8,7 @@ use App\Src\bussines\users\domain\IUserSpecification;
 use App\Src\shared\infrastructure\codeigniter\CIRepository;
 use App\Src\bussines\users\application\ResponseUser;
 use App\Src\bussines\users\application\ResponseUserList;
+use DateTimeZone;
 
 final class UserRepositoryMySql extends CIRepository implements IUserRepository
 {
@@ -36,23 +37,24 @@ final class UserRepositoryMySql extends CIRepository implements IUserRepository
 
     public function save(User $user)
     {
+        $date = new \DateTime("now", new DateTimeZone('UTC'));
         $data = [
             'uuid' => $user->uuid()->value(),
             'name' => $user->name()->value(),
             'user' => $user->user()->value(),
-            'password' => $user->password()->value(),
+            'password' => $user->passwordSha256(),
             'phone' => $user->phone()->value(),
             'email' => $user->email()->value(),
             'address' => $user->address()->value(),
             'position' => $user->position()->value(),
-            'role' => $user->role()->value(),
+            'rol' => $user->role()->value(),
             'language' => $user->language()->value(),
             'active' => $user->active()->value(),
-            'timezone' => $user->timezone()->value()
-            //  'created_at' => 
-            //falta crear fecha creación y zona horaria
+            'timezone' => $user->timezone()->value(),
+            'created_at' => $date->format('Y-m-d H:i')
         ];   
-        $this->db->insertData('user', $data);
+        
+        $this->db->insertData('users', $data);
     }
 
     public function saveAll($users)

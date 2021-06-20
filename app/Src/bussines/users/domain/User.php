@@ -2,7 +2,7 @@
 
 namespace App\Src\bussines\users\domain;
 
-use App\Src\bussines\users\domain\login\UserCreated as LoginUserCreated;
+use App\Src\bussines\users\domain\UserCreated;
 use App\Src\bussines\users\domain\UserUuid;
 use App\Src\bussines\users\domain\UserName;
 use App\Src\bussines\users\domain\UserNickName;
@@ -17,23 +17,21 @@ use App\Src\bussines\users\domain\UserActive;
 use App\Src\bussines\users\domain\UserTimezone;
 use App\Src\shared\domain\aggregate\AggregateRoot;
 
-use App\Src\bussines\users\domain\UserCreated;
-
 final class User extends AggregateRoot
 {
     public function __construct(
-        UserUuid $uuid,
-        UserName $name,
-        UserNickName $user,
-        UserPassword $password,
-        UserPhone $phone,
-        UserEmail $email,
-        UserAddress $address,
-        UserPosition $position,
-        UserRole $role,
-        UserLanguage $language,
-        UserActive $active,
-        UserTimezone $timezone)
+        private UserUuid $uuid,
+        private UserName $name,
+        private UserNickName $user,
+        private UserPassword $password,
+        private UserPhone $phone,
+        private UserEmail $email,
+        private UserAddress $address,
+        private UserPosition $position,
+        private UserRole $role,
+        private UserLanguage $language,
+        private UserActive $active,
+        private UserTimezone $timezone)
     {}
 
     public static function fromValues(object $values):self
@@ -71,12 +69,17 @@ final class User extends AggregateRoot
     {
         $user = new self($uuid, $name, $user, $password, $phone, $email, $address, $position, $role, $language, $active, $timezone);
 
-        $user->record(new LoginUserCreated(
+        $user->record(new UserCreated(
             $name->value(),
             $uuid->value()
         ));
 
         return $user;
+    }
+
+    public function passwordSha256()
+    {
+        return $this->password->encodeSHA256($this->password->value());
     }
 
     public function uuid()
@@ -136,6 +139,6 @@ final class User extends AggregateRoot
 
     public function timezone()
     {
-        return $this->active;
+        return $this->timezone;
     }
 }
