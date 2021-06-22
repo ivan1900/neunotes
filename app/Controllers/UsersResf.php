@@ -109,11 +109,13 @@ class UsersResf extends ResourceController
             $langMap = CurrentLanguage::get($_POST['langDisplay']);
             try{
                 $createUser->create($requestCreateUser);
-                //$this->respond($langMap['messageSuccesSave'],200);
-                $this->respondCreated($langMap['messageSuccesSave']);
+                $response['message'] = $langMap['messageSuccesSave'];
+                $this->response->setStatusCode(201);
             }catch(\Exception $e){
+                $response['message'] = $langMap['messageFailSave'];
                 $this->response->setStatusCode(400);
-                return $this->response->setJSON($langMap['messageFailSave']);
+            }finally{
+                return $this->response->setJSON($response);
             }
             
         } 
