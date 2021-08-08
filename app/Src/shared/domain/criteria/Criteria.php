@@ -30,10 +30,10 @@ final class Criteria implements ICriteria
     {
         return null !== $this->order;
     }
-    public function plainFilters(): array
+    /*public function plainFilters(): array
     {
         return $this->filters->filters();
-    }
+    }*/
     public function mainTable()
     {
         return $this->mainTable;

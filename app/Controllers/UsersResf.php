@@ -10,12 +10,15 @@ use App\Src\bussines\users\application\RequestUser;
 use App\Src\bussines\counters\application\ActiveUsersCounter;
 use App\Src\bussines\readmodel\languages\GetLanguagesList;
 use App\Src\bussines\language\application\LanguageForms;
+use App\Src\bussines\language\application\LanguageErrorCodes;
 use App\Src\bussines\groups\application\GetGroupsList;
 use App\Src\bussines\groups\application\RequestGroupsList;
 use App\Src\bussines\users\application\RequestCreateUser;
 use App\Src\bussines\users\application\CreateUser;
+use CodeIgniter\HTTP\Message;
 use DateTime;
 use DateTimeZone;
+use Error;
 
 class UsersResf extends ResourceController
 {
@@ -107,12 +110,14 @@ class UsersResf extends ResourceController
             );
             $createUser = new CreateUser();
             $langMap = CurrentLanguage::get($_POST['langDisplay']);
+            $errorCodes = LanguageErrorCodes::get($_POST['langDisplay']);
             try{
                 $createUser->create($requestCreateUser);
                 $response['message'] = $langMap['messageSuccesSave'];
                 $this->response->setStatusCode(201);
             }catch(\Exception $e){
                 $response['message'] = $langMap['messageFailSave'];
+                $response['message'] = $errorCodes[$e->getCode()];
                 $this->response->setStatusCode(400);
             }finally{
                 return $this->response->setJSON($response);

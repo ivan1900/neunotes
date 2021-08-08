@@ -59,11 +59,11 @@ class CriteriaUsersList implements IUserSpecification
 
     private function offset()
     {
-        return null;
+        return $this->from;
     }
 
     private function limit()
     {
-        return null;
+        return  $this->to;
     }
 }

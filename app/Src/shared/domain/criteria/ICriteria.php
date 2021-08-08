@@ -8,7 +8,7 @@ Interface ICriteria
     
     public function hasOrder(): bool;
     
-    public function plainFilters(): array;
+   /* public function plainFilters(): array; */
 
     public function mainTable();
 
