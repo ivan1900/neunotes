@@ -9,6 +9,7 @@ class Spanish
         $this->langMap = [
             'active' => 'Activo',
             'activo' => 'Activo',
+            'actions' => 'Acciones',
             'administrator' => 'Administrador',
             'address' => 'Dirección',
             'bienvenido' => 'Bienvendio a EnPro',

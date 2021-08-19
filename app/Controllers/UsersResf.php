@@ -11,6 +11,7 @@ use App\Src\bussines\counters\application\ActiveUsersCounter;
 use App\Src\bussines\readmodel\languages\GetLanguagesList;
 use App\Src\bussines\language\application\LanguageForms;
 use App\Src\bussines\language\application\LanguageErrorCodes;
+use App\Src\bussines\language\application\LanguageDialogs;
 use App\Src\bussines\groups\application\GetGroupsList;
 use App\Src\bussines\groups\application\RequestGroupsList;
 use App\Src\bussines\users\application\RequestCreateUser;
@@ -44,7 +45,9 @@ class UsersResf extends ResourceController
         {
             $header[] = $key;
         }
-        
+        $header[] = "actions";
+
+        $response['langMapDialog'] = LanguageDialogs::get($language);
         $response['header'] = $header;
         $response['heading'] = $this->translate($header);
         $activeUsersCounter = new ActiveUsersCounter();

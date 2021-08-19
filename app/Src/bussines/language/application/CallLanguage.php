@@ -3,6 +3,7 @@
 use App\Src\bussines\language\domain\Spanish;
 use App\Src\bussines\language\domain\SpanishErrorCodes;
 use App\Src\bussines\language\domain\SpanishForms;
+use App\Src\bussines\language\domain\SpanishDialogs;
 use App\Src\bussines\language\domain\English;
 
 class CallLanguage
@@ -25,6 +26,12 @@ class CallLanguage
         return $langMap->getMap();
     }
 
+    public function spanishDialogs():array
+    {
+        $langMap = new spanishDialogs();
+        return $langMap->getMap();
+
+    }
     public function english():array
     {
         $langMap = new english();
