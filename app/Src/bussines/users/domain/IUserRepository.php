@@ -10,5 +10,7 @@ interface IUserRepository
 
     public function searchByCriteria(IUserSpecification $specification);
 
+    public function delete($id);
+
     public function searchByUserName(IUserSpecification $usuario);
 }

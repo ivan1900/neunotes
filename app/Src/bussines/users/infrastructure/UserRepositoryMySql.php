@@ -8,7 +8,9 @@ use App\Src\bussines\users\domain\IUserSpecification;
 use App\Src\shared\infrastructure\codeigniter\CIRepository;
 use App\Src\bussines\users\application\ResponseUser;
 use App\Src\bussines\users\application\ResponseUserList;
+
 use DateTimeZone;
+use Exception;
 
 final class UserRepositoryMySql extends CIRepository implements IUserRepository
 {
@@ -65,6 +67,18 @@ final class UserRepositoryMySql extends CIRepository implements IUserRepository
     public function search($id)
     {
         
+    }
+
+    public function delete($id)
+    {
+        $date = new \DateTime("now", new DateTimeZone('UTC'));
+        $this->db->set('deleted_at', $date->format('Y-m-d H:i'));
+        $this->db->where('id', $id);
+        $status = $this->db->update();
+        if (!$status)
+        {
+            return throw new \Exception('1004');           
+        }
     }
 
     public function searchByUserName(IUserSpecification $specification)

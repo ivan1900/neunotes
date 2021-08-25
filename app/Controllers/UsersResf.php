@@ -15,7 +15,9 @@ use App\Src\bussines\language\application\LanguageDialogs;
 use App\Src\bussines\groups\application\GetGroupsList;
 use App\Src\bussines\groups\application\RequestGroupsList;
 use App\Src\bussines\users\application\RequestCreateUser;
+use App\Src\bussines\users\application\RequestDeleteUser;
 use App\Src\bussines\users\application\CreateUser;
+use App\Src\bussines\users\application\DeleteUser;
 use CodeIgniter\HTTP\Message;
 use DateTime;
 use DateTimeZone;
@@ -120,13 +122,37 @@ class UsersResf extends ResourceController
                 $this->response->setStatusCode(201);
             }catch(\Exception $e){
                 $response['message'] = $langMap['messageFailSave'];
-                $response['message'] = $errorCodes[$e->getCode()];
+                //$response['message'] = $errorCodes[$e->getCode()];
                 $this->response->setStatusCode(400);
             }finally{
                 return $this->response->setJSON($response);
             }
             
         } 
+    }
+
+    public function remove($id){
+        if ($_SERVER['REQUEST_METHOD'] !== 'OPTIONS') {
+            $langMap = CurrentLanguage::get($_POST['langDisplay']);
+            $errorCodes = LanguageErrorCodes::get($_POST['langDisplay']);
+
+            $requestDeleteUser = new RequestDeleteUser(
+                id: $_POST['id']
+            );
+
+            $deleteUser = new DeleteUser();
+            try
+            {
+                $response['message'] = $langMap['messageSuccesDelete'];
+                $deleteUser->exec($requestDeleteUser);
+                $this->response->setStatusCode(201);
+            }catch(\Exception $e){
+                $response['message'] = $langMap['messageFailDelete'];
+                $this->response->setStatusCode(400);
+            }finally{
+                return $this->response->setJSON($response);
+            }
+        }
     }
    
     private function translate($content)

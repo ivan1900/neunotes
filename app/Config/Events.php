@@ -60,3 +60,7 @@ Events::on('LoginWasOccurred',function($event){
 Events::on('LanguageWasLoaded',function($event){
 	\App\Src\bussines\session\application\SessionSubscriberLanguage::handle($event->language());
 });
+/*
+Events::on('DeleteUserWasOccurred',function($event){
+
+});*/

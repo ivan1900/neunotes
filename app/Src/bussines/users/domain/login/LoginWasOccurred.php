@@ -2,7 +2,7 @@
 
 use App\Src\shared\domain\events\DomainEvent;
 use App\Src\shared\domain\events\PublishableDomainEvent;
-
+use DateTimeZone;
 class LoginWasOccurred implements DomainEvent, PublishableDomainEvent
 {
     private $userName;
@@ -13,7 +13,7 @@ class LoginWasOccurred implements DomainEvent, PublishableDomainEvent
     public function __construct($userName, $wasLogged, $userUuid)
     {
         $this->userName = $userName;
-        $date = new \DateTime();
+        $date = new \DateTime("now", new DateTimeZone('UTC'));
         $this->occurredOn = $date->format('Y-m-d H:i:s');
         $this->wasLogged = $wasLogged;
         $this->userUuid = $userUuid;
