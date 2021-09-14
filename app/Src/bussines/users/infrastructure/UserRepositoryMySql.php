@@ -56,7 +56,10 @@ final class UserRepositoryMySql extends CIRepository implements IUserRepository
             'created_at' => $date->format('Y-m-d H:i')
         ];   
         
-        $this->db->insertData('users', $data);
+        //$this->db->insertData('users', $data);
+        $db = \Config\Database::connect();
+        $builder = $db->table('users');
+        $builder->insert($data);
     }
 
     public function saveAll($users)
@@ -72,12 +75,14 @@ final class UserRepositoryMySql extends CIRepository implements IUserRepository
     public function delete($id)
     {
         $date = new \DateTime("now", new DateTimeZone('UTC'));
-        $this->db->set('deleted_at', $date->format('Y-m-d H:i'));
-        $this->db->where('id', $id);
-        $status = $this->db->update();
+        $db = \Config\Database::connect();
+        $builder = $db->table('users');
+        $builder->set('deleted_at', $date->format('Y-m-d H:i'));
+        $builder->where('id', $id);
+        $status = $builder->update();
         if (!$status)
         {
-            return throw new \Exception('1004');           
+            throw new \Exception('1004');           
         }
     }
 

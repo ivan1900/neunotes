@@ -3,13 +3,18 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
-
+//use CodeIgniter\Database\ConnectionInterface;
     class CIModel extends Model
     {
             //protected $table = 'usuarios';
             protected $returnType = 'array';
+            //protected $db;
             //protected $primaryKey = 'usuario';
-
+            /*
+            public function __construct(ConnectionInterface &$db)
+            {
+                $this->db = &$db;
+            } */
             
             public function searchByName($table, $item, $value)
             {
@@ -42,8 +47,13 @@ use CodeIgniter\Model;
 
             public function insertData($table, $data)
             {
-                $builder = $this->db->table($table);
-                $builder->insert($data);
+                //$builder = $this->db->table($table);
+                //$builder->insert($data);
+                $db = $this->db;
+                $pQuery = $db->prepare(function($db){
+                    return $db->table($this->table)
+                                ->insert($this->data);
+                });
             }
 
             public function removeSql($delete)

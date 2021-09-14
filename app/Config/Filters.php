@@ -15,6 +15,7 @@ class Filters extends BaseConfig
 	// Always applied before every request
 	public $globals = [
 		'before' => [
+			//'oauthfilter' => ['except' => ['LoginRes/login']]
 			//'honeypot'
 			// 'csrf',
 		],

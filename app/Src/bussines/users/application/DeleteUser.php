@@ -26,7 +26,7 @@ class DeleteUser extends AggregateRoot
 
         }catch (\Exception $e)
         {
-            return throw new \Exception($e);
+            throw new \Exception($e);
         }
 
         $this->record(new UserWasDeleted($id));

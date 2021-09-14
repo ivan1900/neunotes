@@ -131,10 +131,10 @@ class UsersResf extends ResourceController
         } 
     }
 
-    public function remove($id){
+    public function remove(){
         if ($_SERVER['REQUEST_METHOD'] !== 'OPTIONS') {
             $langMap = CurrentLanguage::get($_POST['langDisplay']);
-            $errorCodes = LanguageErrorCodes::get($_POST['langDisplay']);
+//            $errorCodes = LanguageErrorCodes::get($_POST['langDisplay']);
 
             $requestDeleteUser = new RequestDeleteUser(
                 id: $_POST['id']
@@ -153,6 +153,7 @@ class UsersResf extends ResourceController
                 return $this->response->setJSON($response);
             }
         }
+//        $this->response->setStatusCode(201);
     }
    
     private function translate($content)
