@@ -40,6 +40,7 @@ class Spanish
             'messageFailSave' => 'No se ha podido guardar, revise los datos',
             'name' => 'Nombre',
             'no' => 'No',
+            'notes' => 'Notas',
             'nuevo'=> 'Nuevo',
             'of' => 'de',
             'options' => 'Opciones',
