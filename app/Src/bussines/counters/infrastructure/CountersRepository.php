@@ -14,4 +14,17 @@ class CountersRepository extends CIRepository implements ICountersRepository
         $response = new ResponseCounter($result[0]['item'], $result[0]['value']);
         return $response;
     }
+
+    public function update($item, $value)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('counters');
+        $builder->set('value', $value);
+        $builder->where('item', $item);
+        $status = $builder->update();
+        if (!$status)
+        {
+            throw new \Exception('1004');           
+        }
+    }
 }

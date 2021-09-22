@@ -124,10 +124,8 @@ class UsersResf extends ResourceController
                 $response['message'] = $langMap['messageFailSave'];
                 //$response['message'] = $errorCodes[$e->getCode()];
                 $this->response->setStatusCode(400);
-            }finally{
-                return $this->response->setJSON($response);
             }
-            
+            return $this->response->setJSON($response);
         } 
     }
 
@@ -149,9 +147,9 @@ class UsersResf extends ResourceController
             }catch(\Exception $e){
                 $response['message'] = $langMap['messageFailDelete'];
                 $this->response->setStatusCode(400);
-            }finally{
-                return $this->response->setJSON($response);
             }
+            return $this->response->setJSON($response);
+            
         }
 //        $this->response->setStatusCode(201);
     }

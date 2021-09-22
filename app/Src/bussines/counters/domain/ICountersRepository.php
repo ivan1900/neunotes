@@ -4,4 +4,6 @@ interface ICountersRepository
 {
     public function searchByCriteria(ICounterSpecification $specification);
 
+    public function update($value, $item);
+
 }

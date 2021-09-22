@@ -2,14 +2,14 @@
 
 use App\Src\bussines\counters\application\ActiveUsersCounter;
 use App\Src\bussines\counters\infrastructure\CountersRepository;
-class SuscriberCounterAddUser
+class SuscriberCounterSubstractUser
 {
     static function handle()
     {
         $getActiveUsersCount = new ActiveUsersCounter();
         $activeUsersCount = $getActiveUsersCount();
 
-        $count = $activeUsersCount->value + 1;
+        $count = $activeUsersCount->value - 1;
 
         $repository = new CountersRepository();
 

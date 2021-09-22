@@ -60,7 +60,11 @@ Events::on('LoginWasOccurred',function($event){
 Events::on('LanguageWasLoaded',function($event){
 	\App\Src\bussines\session\application\SessionSubscriberLanguage::handle($event->language());
 });
-/*
-Events::on('DeleteUserWasOccurred',function($event){
 
-});*/
+Events::on('UserWasDeleted',function($event){
+	\App\Src\bussines\counters\application\SuscriberCounterSubstractUser::handle();
+});
+
+Events::on('UserWasCreated', function($event){
+	\App\Src\bussines\counters\application\SuscriberCounterAddUser::handle();
+});

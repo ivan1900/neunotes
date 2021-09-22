@@ -4,7 +4,7 @@ use App\Src\bussines\users\application\RequestDeleteUser;
 use App\Src\bussines\users\infrastructure\UserRepositoryMySql;
 use App\Src\shared\infrastructure\EventDispatcher;
 use App\Src\shared\domain\aggregate\AggregateRoot;
-use App\Src\bussines\users\domain\login\UserWasDeleted;
+use App\Src\bussines\users\domain\UserWasDeleted;
 use Exception;
 
 class DeleteUser extends AggregateRoot
@@ -23,15 +23,17 @@ class DeleteUser extends AggregateRoot
         $repository = new UserRepositoryMySql();
         try{
             $repository->delete($id);
+            $userWasDeleted[] = new UserWasDeleted($id); 
+            $this->dispatcher->notify($userWasDeleted);
 
         }catch (\Exception $e)
         {
             throw new \Exception($e);
         }
 
-        $this->record(new UserWasDeleted($id));
+       /* $this->record(new UserWasDeleted($id));
         $events = $this->pullDomainEvents();
-        $this->dispatcher->notify($events);
+        $this->dispatcher->notify($events); */
     }
 
 }

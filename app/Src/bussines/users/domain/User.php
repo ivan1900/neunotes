@@ -2,7 +2,7 @@
 
 namespace App\Src\bussines\users\domain;
 
-use App\Src\bussines\users\domain\UserCreated;
+use App\Src\bussines\users\domain\UserWasCreated;
 use App\Src\bussines\users\domain\UserUuid;
 use App\Src\bussines\users\domain\UserName;
 use App\Src\bussines\users\domain\UserNickName;
@@ -69,7 +69,7 @@ final class User extends AggregateRoot
     {
         $user = new self($uuid, $name, $user, $password, $phone, $email, $address, $position, $role, $language, $active, $timezone);
 
-        $user->record(new UserCreated(
+        $user->record(new UserWasCreated(
             $name->value(),
             $uuid->value()
         ));

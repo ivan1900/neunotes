@@ -4,7 +4,7 @@ use App\Src\shared\domain\events\DomainEvent;
 use App\Src\shared\domain\events\PublishableDomainEvent;
 use DateTimeZone;
 
-class UserCreated implements DomainEvent, PublishableDomainEvent
+class UserWasCreated implements DomainEvent, PublishableDomainEvent
 {
     private $userName;
     private $occurredOn;
@@ -19,7 +19,7 @@ class UserCreated implements DomainEvent, PublishableDomainEvent
 
     public function eventName()
     {
-        return "UserCreated";
+        return "UserWasCreated";
     }
 
     public function occurredOn()

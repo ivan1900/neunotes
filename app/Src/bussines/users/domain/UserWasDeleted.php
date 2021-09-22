@@ -1,4 +1,4 @@
-<?php namespace App\Src\bussines\users\domain\login;
+<?php namespace App\Src\bussines\users\domain;
 
 use App\Src\shared\domain\events\DomainEvent;
 use App\Src\shared\domain\events\PublishableDomainEvent;
@@ -17,7 +17,7 @@ class UserWasDeleted implements DomainEvent, PublishableDomainEvent
 
     public function eventName()
     {
-        return "DeleteUserWasOccurred";
+        return "UserWasDeleted";
     }
 
     public function occurredOn()
