@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Src\buissines\notes\domain;
+namespace App\Src\bussines\notes\domain;
 
 use App\Src\shared\domain\valueObject\DateTimeValueObject;
 
-final class NoteUpdate_at extends DateTimeValueObject
+final class NoteUpdated_at extends DateTimeValueObject
 {
     
 }

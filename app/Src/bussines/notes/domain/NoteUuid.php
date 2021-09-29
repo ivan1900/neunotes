@@ -1,4 +1,4 @@
-<?php namespace App\Src\buissines\notes\domain;
+<?php namespace App\Src\bussines\notes\domain;
 
 use App\Src\shared\domain\valueObject\Uuid;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Src\buissines\notes\domain;
+namespace App\Src\bussines\notes\domain;
 
 use App\Src\shared\domain\valueObject\DateTimeValueObject;
 
