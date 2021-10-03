@@ -53,12 +53,11 @@ Events::on('pre_system', function () {
 
 Events::on('LoginWasOccurred',function($event){
 	\App\Src\shared\infrastructure\PersistEventDomainSubscriber::handle($event->eventName(),$event->userName(),$event->wasLogged(),$event->occurredOn());
-	\App\Src\bussines\session\application\SessionSubscriberUserName::handle($event->userName());
-	\App\Src\bussines\session\application\SessionSubscriberUserUuid::handle($event->userUuid());
+	
 });
 
 Events::on('LanguageWasLoaded',function($event){
-	\App\Src\bussines\session\application\SessionSubscriberLanguage::handle($event->language());
+	
 });
 
 Events::on('UserWasDeleted',function($event){
