@@ -7,7 +7,7 @@ use App\Src\bussines\notes\domain\NoteContent;
 use App\Src\bussines\notes\domain\NoteCreated_at;
 use App\Src\bussines\notes\domain\NoteUpdated_at;
 use App\Src\bussines\notes\domain\NoteWasCreated;
-
+use DateTimeZone;
 final class Note extends AggregateRoot
 {
     public function __construct(
@@ -23,10 +23,11 @@ final class Note extends AggregateRoot
         NoteUuid $uuid,
         NoteTitle $title,
         Notecontent $content,
-        NoteCreated_at $noteCreated_at,
-        NoteUpdated_at $noteUpdated_at
     ):Note
     {
+        $date = new \DateTime("now", new DateTimeZone('UTC'));
+        $noteCreated_at = new NoteCreated_at($date->format('Y-m-d H:i'));
+        $noteUpdated_at = new NoteUpdated_at(null);
         $note = new self($uuid, $title, $content, $noteCreated_at, $noteUpdated_at);
 
         $note->record(new NoteWasCreated(
@@ -35,5 +36,30 @@ final class Note extends AggregateRoot
         ));
 
         return $note;
+    }
+
+    public function uuid()
+    {
+        return $this->uuid;
+    }
+
+    public function title()
+    {
+        return $this->title;
+    }
+
+    public function content()
+    {
+        return $this->content;
+    }
+
+    public function created_at()
+    {
+        return $this->created_at;
+    }
+
+    public function updated_at()
+    {
+        return $this->updated_at;
     }
 }

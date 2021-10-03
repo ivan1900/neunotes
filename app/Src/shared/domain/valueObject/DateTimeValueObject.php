@@ -7,7 +7,7 @@ class DateTimeValueObject
 {
     protected $value;
 
-    public function __construct(string $value)
+    public function __construct(?string $value)
     {
         $this->value = $value;
     }

@@ -15,7 +15,16 @@ final class NoteRepositoryMySql extends CIRepository implements INoteRepository
 
     public function save(Note $note)
     {
-
+        $data = [
+            'uuid' => $note->uuid()->value(),
+            'title' => $note->title()->value(),
+            'content' => $note->content()->value(),
+            'created_at' => $note->created_at()->value(),
+            'updated_at' => $note->updated_at()->value()
+        ];
+        $db = \Config\Database::connect();
+        $builder = $db->table('notes');
+        $builder->insert($data);
     }
 
     public function searchByCriteria(INoteSpecification $specification)
