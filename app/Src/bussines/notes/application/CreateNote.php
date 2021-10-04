@@ -31,5 +31,8 @@ final class CreateNote
         $repository = new NoteRepositoryMySql();
 
         $repository->save($newNote);
+
+        $events = $newNote->pullDomainEvents();
+        $this->dispatcher->notify($events);
     }
 }
