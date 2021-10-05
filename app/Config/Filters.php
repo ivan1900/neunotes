@@ -24,7 +24,9 @@ class Filters extends BaseConfig
 				'UsersRes/*',
 				'GroupsRes/*',
 				'UsersResf/*',
-				'MenuResf/*'
+				'MenuResf/*',
+				'NotesResf/*',
+				'LanguageResf/*'
 				]],
 			//'honeypot'
 		],
