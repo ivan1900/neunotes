@@ -12,7 +12,7 @@ class DateTimeValueObject
         $this->value = $value;
     }
 
-    public function value(): string 
+    public function value()
     {
         return $this->value;
     }
