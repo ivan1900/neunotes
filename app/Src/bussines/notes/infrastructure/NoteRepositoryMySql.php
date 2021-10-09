@@ -12,9 +12,9 @@ use DateTimeZone;
 
 final class NoteRepositoryMySql extends CIRepository implements INoteRepository
 {
-
     public function save(Note $note)
     {
+        $prueba = $note->uuid();
         $data = [
             'uuid' => $note->uuid()->value(),
             'title' => $note->title()->value(),

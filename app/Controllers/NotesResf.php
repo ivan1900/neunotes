@@ -12,16 +12,17 @@ class NotesResf extends ResourceController
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'OPTIONS') {
             $requestCreateNote = new RequestCreateNote(
-                $title: $_POST['title'],
-                $content: $_POST['content']
+                title: $_POST['title'],
+                content: $_POST['content']
             );
             $createNote = new CreateNote();
 
             try
             {
-                $createNote->create($requestCreateNote);        
+                $createNote->create($requestCreateNote);  
+                $this->response->setStatusCode(201);      
             }catch(\Exception){
-
+                $this->response->setStatusCode(400);
             }
         }
     }
