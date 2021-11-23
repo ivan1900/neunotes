@@ -30,3 +30,11 @@ class GetUser
     }
 
 }
+
+class GetUserCommand
+{
+    public function __construct(RequestUser $request)
+    {
+        $this->user = $request->user();        
+    }
+}
