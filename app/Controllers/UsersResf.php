@@ -61,9 +61,8 @@ class UsersResf extends ResourceController
     
     public function show($user = null)
     {
-        $getUserCommand = new GetUserCommand($user);
         $getUser = new GetUser(new UserRepositoryMySql());
-        $user = $getUser->execute($getUserCommand);
+        $user = $getUser->execute(new GetUserCommand($user));
         $data= [
             "name" => $user->name(),
             "language" => $user->language(),
