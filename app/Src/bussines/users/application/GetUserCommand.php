@@ -1,11 +1,13 @@
 <?php namespace App\Src\bussines\users\application;
 
-class RequestUser
+class GetUserCommand
 {
-    public function __construct(
-        private $user
-    )
-    {}
+    private $user;
+
+    public function __construct($user)
+    {
+        $this->user = $user; 
+    }
 
     public function user()
     {

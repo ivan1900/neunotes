@@ -1,12 +1,13 @@
 <?php namespace App\Controllers;
 
+use App\Src\bussines\users\infrastructure\UserRepositoryMySql;
 use CodeIgniter\RESTful\ResourceController;
 use App\Src\bussines\users\application\GetUsersList;
 use App\Src\bussines\language\application\CurrentLanguage;
 //use App\Src\bussines\language\application\LanguageTable;
 use App\Src\bussines\users\application\RequestUserList;
 use App\Src\bussines\users\application\GetUser;
-use App\Src\bussines\users\application\RequestUser;
+use App\Src\bussines\users\application\GetUserCommand;
 use App\Src\bussines\counters\application\ActiveUsersCounter;
 use App\Src\bussines\readmodel\languages\GetLanguagesList;
 use App\Src\bussines\language\application\LanguageForms;
@@ -60,9 +61,9 @@ class UsersResf extends ResourceController
     
     public function show($user = null)
     {
-        $request = new RequestUser($user);
-        $getUser = new GetUser($request);
-        $user = $getUser->execute();
+        $getUserCommand = new GetUserCommand($user);
+        $getUser = new GetUser(new UserRepositoryMySql());
+        $user = $getUser->execute($getUserCommand);
         $data= [
             "name" => $user->name(),
             "language" => $user->language(),

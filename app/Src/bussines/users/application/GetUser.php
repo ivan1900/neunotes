@@ -1,24 +1,25 @@
 <?php namespace App\Src\bussines\users\application;
 
-use App\Src\bussines\users\application\RequestUser;
-use App\Src\bussines\users\infrastructure\UserRepositoryMySql;
+use App\Src\bussines\users\application\CreateUserCommand;
+//use App\Src\bussines\users\domain\IUserRepository;
 use App\Src\bussines\users\application\UserFinder;
+use App\Src\bussines\users\domain\IUserRepository;
 use App\Src\bussines\users\domain\UserNotExists;
 use App\Src\bussines\users\infrastructure\IsUser;
 class GetUser
 {
-    private $user;
+    private $repository;
 
-    public function __construct(RequestUser $request)
+    public function __construct(IUserRepository $repository)
     {
-        $this->user = $request->user();
+        $this->repository = $repository;
     }
 
-    public function execute()
+    public function execute(GetUserCommand $getUserCommand)
     {
-        $isUser = new IsUser($this->user);
-        $repository = new UserRepositoryMySql();
-        $finder = new UserFinder($repository);
+        $user = $getUserCommand->user();
+        $isUser = new IsUser($user);
+        $finder = new UserFinder($this->repository);
         
         try{
             $response = $finder($isUser);
@@ -31,10 +32,3 @@ class GetUser
 
 }
 
-class GetUserCommand
-{
-    public function __construct(RequestUser $request)
-    {
-        $this->user = $request->user();        
-    }
-}
